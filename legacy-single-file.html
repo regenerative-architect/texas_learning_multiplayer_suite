@@ -1,0 +1,1102 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Texas Learning & Teacher Capacity Operating System — public-ready planning, pathways, educator capacity, tutoring, workforce alignment and local action tools. Systems architecture: Ricky Foster + Navi / Planetary Restoration Archive.">
+<title>Texas Learning & Teacher Capacity OS — Ricky Foster + Navi</title>
+<style>
+:root{
+  --bg:#07111f;--panel:#0d1b2d;--panel2:#12243b;--text:#edf5ff;--muted:#a9bdd4;
+  --line:#29415e;--accent:#61dafb;--accent2:#f7c948;--good:#65d69a;--warn:#ffcb6b;
+  --bad:#ff7b89;--focus:#fff;--shadow:0 12px 35px rgba(0,0,0,.25);
+  --radius:18px;--top:68px;--side:300px;--font:16px;
+}
+html[data-theme="light"]{--bg:#f4f8fc;--panel:#fff;--panel2:#edf4fb;--text:#102237;--muted:#536b84;--line:#cbd9e6;--accent:#006fb5;--accent2:#8a5d00;--good:#0a7547;--warn:#8a5d00;--bad:#a22737;--focus:#111;--shadow:0 12px 32px rgba(39,62,85,.12)}
+html[data-contrast="high"]{--bg:#000;--panel:#000;--panel2:#111;--text:#fff;--muted:#fff;--line:#fff;--accent:#00ffff;--accent2:#ffff00;--good:#00ff7f;--warn:#ffff00;--bad:#ff6474}
+*{box-sizing:border-box}
+html{font-size:var(--font);scroll-behavior:smooth}
+body{margin:0;background:
+radial-gradient(circle at 20% 0%,rgba(97,218,251,.08),transparent 28rem),
+radial-gradient(circle at 90% 20%,rgba(247,201,72,.06),transparent 30rem),var(--bg);
+color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55}
+a{color:var(--accent);text-underline-offset:3px}
+button,input,select,textarea{font:inherit}
+button,.btn,select,input,textarea{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:12px}
+button,.btn{cursor:pointer;padding:.68rem .9rem;min-height:44px}
+button:hover,.btn:hover{border-color:var(--accent)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+input,select,textarea{padding:.66rem .75rem;width:100%}
+textarea{min-height:100px;resize:vertical}
+label{display:grid;gap:.36rem;font-weight:650}
+small,.muted{color:var(--muted)}
+kbd,.tag,.badge{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:.18rem .52rem;background:var(--panel2);font-size:.78rem}
+.badge.good{color:var(--good)}.badge.warn{color:var(--warn)}.badge.bad{color:var(--bad)}
+.skip{position:fixed;top:-100px;left:10px;z-index:9999;background:var(--text);color:var(--bg);padding:.6rem;border-radius:8px}
+.skip:focus{top:10px}
+.topbar{position:sticky;top:0;z-index:100;height:var(--top);display:flex;align-items:center;gap:.7rem;padding:.55rem 1rem;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:.65rem;min-width:230px;text-decoration:none;color:var(--text);font-weight:850}
+.brandmark{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#08111d;font-weight:950;box-shadow:var(--shadow)}
+.topnav{display:flex;align-items:center;gap:.35rem;min-width:0;overflow:auto;scrollbar-width:none}
+.topnav a{white-space:nowrap;text-decoration:none;color:var(--muted);padding:.55rem .65rem;border-radius:10px}
+.topnav a[aria-current="page"],.topnav a:hover{background:var(--panel2);color:var(--text)}
+.spacer{flex:1}
+.iconbtn{width:44px;min-width:44px;padding:0;display:grid;place-items:center}
+.shell{display:grid;grid-template-columns:var(--side) minmax(0,1fr);min-height:calc(100dvh - var(--top))}
+.sidebar{position:sticky;top:var(--top);height:calc(100dvh - var(--top));overflow:auto;border-right:1px solid var(--line);padding:1rem;background:color-mix(in srgb,var(--bg) 96%,transparent)}
+.sidebar-search{position:sticky;top:0;background:var(--bg);padding-bottom:.7rem;z-index:3}
+.tree{display:grid;gap:.25rem}
+.tree-group{margin:.85rem 0 .25rem;color:var(--muted);font-size:.74rem;text-transform:uppercase;letter-spacing:.09em;font-weight:850}
+.tree a{display:flex;gap:.5rem;align-items:center;text-decoration:none;color:var(--muted);padding:.5rem .6rem;border-radius:9px}
+.tree a:hover,.tree a[aria-current="page"]{background:var(--panel2);color:var(--text)}
+main{min-width:0;padding:1.2rem clamp(1rem,3vw,2.6rem) 5rem}
+.breadcrumbs{font-size:.86rem;color:var(--muted);margin-bottom:.8rem}
+.hero{padding:clamp(1.2rem,4vw,2.2rem);border:1px solid var(--line);border-radius:24px;background:
+linear-gradient(135deg,rgba(97,218,251,.08),rgba(247,201,72,.05)),var(--panel);box-shadow:var(--shadow);overflow:hidden;position:relative}
+.hero h1{font-size:clamp(2rem,5vw,4rem);line-height:1.02;margin:.35rem 0 .7rem;max-width:15ch}
+.hero p{font-size:1.06rem;max-width:80ch;color:var(--muted)}
+.kicker{font-size:.76rem;text-transform:uppercase;letter-spacing:.12em;font-weight:900;color:var(--accent)}
+.grid{display:grid;gap:1rem}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:1rem;box-shadow:0 7px 24px rgba(0,0,0,.08);min-width:0}
+.card h2,.card h3{margin:.1rem 0 .6rem;line-height:1.2}.card p{color:var(--muted)}
+.stat{font-size:clamp(1.4rem,3vw,2.4rem);font-weight:900}.stat small{font-size:.72rem;font-weight:700;display:block}
+.section{margin-top:1.2rem}.section-title{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin:0 0 .75rem}
+.section-title h2{margin:0}
+.actions{display:flex;gap:.5rem;flex-wrap:wrap}.actions .primary,.primary{background:var(--accent);color:#07111f;border-color:transparent;font-weight:850}
+.callout{border-left:4px solid var(--accent);padding:.8rem 1rem;background:var(--panel2);border-radius:0 12px 12px 0}
+.warnbox{border-left-color:var(--warn)}.badbox{border-left-color:var(--bad)}.goodbox{border-left-color:var(--good)}
+details{border:1px solid var(--line);border-radius:14px;background:var(--panel);margin:.55rem 0}
+summary{cursor:pointer;padding:.8rem 1rem;font-weight:780}
+details>div{padding:0 1rem 1rem}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem}
+.output{white-space:pre-wrap;border:1px dashed var(--line);background:var(--panel2);padding:1rem;border-radius:12px;min-height:56px}
+.progress{height:12px;border-radius:999px;background:var(--panel2);overflow:hidden;border:1px solid var(--line)}.progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.steps{display:flex;gap:.5rem;overflow:auto;padding:.4rem 0}.step{min-width:140px;padding:.75rem;border:1px solid var(--line);border-radius:13px;background:var(--panel)}.step strong{display:block}
+.module-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.8rem}
+.module{border:1px solid var(--line);background:var(--panel);border-radius:15px;padding:.9rem}
+.module h3{margin:.15rem 0}.module p{font-size:.9rem;margin:.4rem 0;color:var(--muted)}
+.module footer{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.65rem}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:14px}
+table{border-collapse:collapse;width:100%;min-width:680px;background:var(--panel)}th,td{text-align:left;padding:.75rem;border-bottom:1px solid var(--line);vertical-align:top}th{position:sticky;top:0;background:var(--panel2);z-index:1}
+.pillrow{display:flex;gap:.45rem;flex-wrap:wrap}.pill{padding:.45rem .7rem;border:1px solid var(--line);border-radius:999px;background:var(--panel2);cursor:pointer}
+.pill[aria-pressed="true"]{background:var(--accent);color:#06111d}
+.metricbar{display:grid;grid-template-columns:160px 1fr 60px;gap:.6rem;align-items:center;margin:.45rem 0}.metricbar .bar{height:10px;background:var(--panel2);border-radius:999px;overflow:hidden}.metricbar .bar i{display:block;height:100%;background:var(--accent)}
+.notice{font-size:.88rem;color:var(--muted);padding:.75rem;border:1px solid var(--line);border-radius:12px}
+.source{display:grid;grid-template-columns:1fr auto;gap:.7rem;padding:.7rem 0;border-bottom:1px solid var(--line)}.source:last-child{border-bottom:0}
+.hud{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}.hud .meter{padding:.35rem .55rem;border-radius:10px;background:var(--panel2);border:1px solid var(--line);font-size:.82rem}
+.dialog-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:900;display:none;place-items:center;padding:1rem}.dialog-backdrop.open{display:grid}.dialog{width:min(780px,100%);max-height:86dvh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:1rem;box-shadow:var(--shadow)}
+.toast{position:fixed;right:1rem;bottom:1rem;z-index:1200;background:var(--panel);border:1px solid var(--line);padding:.8rem 1rem;border-radius:12px;box-shadow:var(--shadow);transform:translateY(160%);transition:.2s}.toast.show{transform:none}
+.mobile-only{display:none}
+.noscript{background:#fff5c2;color:#302a00;padding:1rem;border:2px solid #8d7300}
+hr{border:0;border-top:1px solid var(--line);margin:1rem 0}
+ul.compact{padding-left:1.2rem;margin:.4rem 0}ul.compact li{margin:.25rem 0}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(max-width:1080px){.g4{grid-template-columns:repeat(2,1fr)}.topnav a:nth-of-type(n+6){display:none}}
+@media(max-width:820px){
+  :root{--side:0px}.shell{display:block}.sidebar{position:fixed;z-index:500;top:var(--top);left:0;width:min(88vw,330px);height:calc(100dvh - var(--top));transform:translateX(-105%);transition:.2s;box-shadow:var(--shadow);background:var(--bg)}.sidebar.open{transform:none}
+  .mobile-only{display:grid}.brand span:last-child{display:none}.brand{min-width:auto}.topnav{display:none}.g2,.g3,.g4,.formgrid{grid-template-columns:1fr}.metricbar{grid-template-columns:120px 1fr 48px}main{padding-inline:1rem}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+@media print{
+  .topbar,.sidebar,.actions,.hud,.no-print,.toast,.dialog-backdrop{display:none!important}.shell{display:block}.hero,.card,details{box-shadow:none;break-inside:avoid}body{background:#fff;color:#000}main{padding:0}.muted,.card p{color:#333}a{color:#000;text-decoration:none}details>div{display:block!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<noscript><div class="noscript">This application uses JavaScript for routing, calculators and local storage. The core design principle remains: strengthen learning and educator capacity without making access dependent on one platform. Official source links can still be opened if JavaScript is enabled later.</div></noscript>
+
+<header class="topbar" aria-label="Primary navigation">
+  <button class="iconbtn mobile-only" id="menuBtn" aria-label="Open navigation" aria-expanded="false">☰</button>
+  <a class="brand" href="#overview"><span class="brandmark">TX</span><span>Learning & Teacher Capacity OS</span></a>
+  <nav class="topnav" id="topnav"></nav>
+  <div class="spacer"></div>
+  <div class="hud no-print" aria-label="Learning HUD">
+    <span class="meter" id="connectivity">● Online</span>
+    <span class="meter" id="freshness">Data: mixed</span>
+    <span class="meter" id="xpMeter">XP 0</span>
+  </div>
+  <button class="iconbtn" id="searchBtn" aria-label="Search">⌕</button>
+  <button class="iconbtn" id="settingsBtn" aria-label="Settings">⚙</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="Section navigation">
+    <div class="sidebar-search"><input id="sideFilter" type="search" placeholder="Filter modules…" aria-label="Filter navigation"></div>
+    <nav class="tree" id="tree"></nav>
+    <hr>
+    <div class="notice">
+      <strong>Privacy default:</strong> personal plans and portfolio records stay in this browser unless you explicitly export them.
+    </div>
+  </aside>
+
+  <main id="main" tabindex="-1">
+    <div class="breadcrumbs" id="breadcrumbs">Texas Learning OS / Overview</div>
+    <div id="view"></div>
+  </main>
+</div>
+
+<div class="dialog-backdrop" id="searchDialog" role="dialog" aria-modal="true" aria-labelledby="searchTitle">
+  <section class="dialog">
+    <div class="section-title"><div><div class="kicker">Universal search</div><h2 id="searchTitle">Search pathways, modules, resources & sources</h2></div><button data-close="searchDialog">✕</button></div>
+    <input id="globalSearch" type="search" placeholder="Try “bilingual”, “apprenticeship”, “rural”, “AI literacy”…" autocomplete="off">
+    <div id="searchResults" class="section"></div>
+  </section>
+</div>
+
+<div class="dialog-backdrop" id="settingsDialog" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+  <section class="dialog">
+    <div class="section-title"><div><div class="kicker">Local preferences</div><h2 id="settingsTitle">Settings & accessibility</h2></div><button data-close="settingsDialog">✕</button></div>
+    <div class="formgrid">
+      <label>Theme<select id="themeSelect"><option value="dark">Dark</option><option value="light">Light</option></select></label>
+      <label>Language<select id="langSelect"><option value="en">English</option><option value="es">Español (core UI)</option></select></label>
+      <label>Text size<select id="fontSelect"><option value="15px">Compact</option><option value="16px">Standard</option><option value="18px">Large</option><option value="20px">Extra large</option></select></label>
+      <label>User mode<select id="modeSelect"></select></label>
+    </div>
+    <div class="pillrow section">
+      <button id="contrastBtn">Toggle high contrast</button>
+      <button id="motionBtn">Reduce motion</button>
+      <button id="hudBtn">Toggle HUD</button>
+    </div>
+    <hr>
+    <h3>Data sovereignty</h3>
+    <div class="actions">
+      <button id="exportBtn">Export JSON backup</button>
+      <label class="btn">Import JSON<input class="sr-only" id="importInput" type="file" accept="application/json"></label>
+      <button id="clearBtn">Reset local records</button>
+    </div>
+    <p class="muted">Imports are schema-checked before writing. No hidden telemetry is used. A SHA-256 hash can verify file integrity, but not authorship.</p>
+  </section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+
+/* ==========================================================
+   TEXAS LEARNING & TEACHER CAPACITY OPERATING SYSTEM
+   Systems architecture / concept: Ricky Foster + Navi
+   Planetary Restoration Archive
+   Single-file public prototype. No hidden telemetry.
+   ========================================================== */
+
+const APP = {
+  name:"Texas Learning & Teacher Capacity OS",
+  version:"1.0.0-public-prototype",
+  schema:1,
+  verified:"2026-09-27",
+  evidence:{A:"Official measured data",B:"Peer-reviewed evidence",C:"Institutional analysis",D:"Preliminary evidence",E:"Modeled scenario",F:"Conceptual proposal"}
+};
+
+const USER_MODES = [
+  "student","parent","teacher","paraprofessional","substitute teacher","retired educator","tutor","mentor",
+  "school administrator","counselor","district staff","librarian","employer","apprenticeship sponsor","college",
+  "workforce board","nonprofit","municipality","researcher"
+];
+
+const ROUTES = [
+  {id:"overview",title:"Overview",group:"Start",top:true,icon:"⌂",desc:"Statewide learning-capacity dashboard, current evidence notes and next actions."},
+  {id:"student-pathways",title:"Student Pathways",group:"Learners",top:true,icon:"↗",desc:"Explore CTE, dual credit, college, apprenticeship and employment pathways without forcing a single track."},
+  {id:"teacher-capacity",title:"Teacher Capacity",group:"Educators",top:true,icon:"◎",desc:"Shortages, pipeline, recruitment, retention, support inventories and local capacity planning."},
+  {id:"teacher-certification",title:"Teacher Certification",group:"Educators",icon:"✓",desc:"Texas certification pathway navigator grounded in official TEA resources."},
+  {id:"teacher-retention",title:"Teacher Retention",group:"Educators",icon:"↺",desc:"Local retention-factor inventory and workload planning."},
+  {id:"substitutes",title:"Substitute Capacity",group:"Educators",icon:"◴",desc:"Eligibility, onboarding, training, scheduling and retention planning; not a permanent-teacher replacement strategy."},
+  {id:"paraprofessionals",title:"Paraprofessional Pathways",group:"Educators",icon:"⇧",desc:"Degree completion, tuition support, certification, work-study alignment and mentorship."},
+  {id:"retired-educators",title:"Retired Educators",group:"Educators",icon:"∞",desc:"Voluntary tutoring, mentoring, coaching, substitute work and curriculum support."},
+  {id:"tutoring",title:"Tutors & Mentors",group:"Learning Support",top:true,icon:"◇",desc:"Structured, safeguarded tutoring and mentoring planning with adult/school oversight for minors."},
+  {id:"families",title:"Families",group:"Learning Support",icon:"⌂",desc:"Homework support, literacy, numeracy, attendance, school communication and digital tools."},
+  {id:"libraries",title:"Libraries",group:"Learning Support",icon:"▤",desc:"Libraries as tutoring, connectivity, makerspace, homework and career infrastructure."},
+  {id:"community",title:"Community Experts",group:"Learning Support",icon:"✦",desc:"Verified local experts contributing guest talks, workshops, mentorship and technical projects."},
+  {id:"special-ed",title:"Special Education",group:"Learning Domains",icon:"♿",desc:"Accommodations, IEP literacy, assistive technology, family resources and transition planning; not legal advice."},
+  {id:"bilingual",title:"Bilingual / ESL",group:"Learning Domains",icon:"文",desc:"English learners, bilingual education, family language access, educator pathways and dual-language resources."},
+  {id:"stem",title:"STEM",group:"Learning Domains",icon:"⚛",desc:"Project-based physics, chemistry, biology, engineering, environment, robotics, space, energy and water."},
+  {id:"computer-science",title:"Computer Science & AI",group:"Learning Domains",icon:"⌘",desc:"Computational thinking, coding, data, cybersecurity, AI literacy and verification habits."},
+  {id:"cte",title:"Career & Technical Education",group:"Opportunity",top:true,icon:"⚒",desc:"Skills, credentials, coursework, employers and education routes across Texas career clusters."},
+  {id:"apprenticeships",title:"Apprenticeships",group:"Opportunity",icon:"⛓",desc:"Registered apprenticeships, sponsor programs, technical trades and paid work-based learning."},
+  {id:"dual-credit",title:"Dual Credit",group:"Opportunity",icon:"⇄",desc:"Eligibility, partner institutions, transferability, cost considerations and plan building."},
+  {id:"college",title:"College Pathways",group:"Opportunity",icon:"▣",desc:"Community college, university, technical, transfer and certificate pathway comparisons."},
+  {id:"workforce",title:"Workforce Alignment",group:"Opportunity",top:true,icon:"↔",desc:"Connect local industries, occupations, skills, credentials, programs and current labor-market evidence."},
+  {id:"rural",title:"Rural Education",group:"Place",icon:"⌁",desc:"Long distances, broadband, specialized teachers, advanced coursework, CTE access and mobile labs."},
+  {id:"digital-access",title:"Digital Access",group:"Place",icon:"⌁",desc:"Broadband, device access, digital literacy, privacy, scams, productivity tools and resilient learning access."},
+  {id:"local-profiles",title:"Local Profiles",group:"Place",icon:"⌖",desc:"Local-only district, county and regional capacity profiles."},
+  {id:"integration",title:"Cross-System Integrations",group:"Place",icon:"✣",desc:"Education links to mobility, housing, health, food, energy and water systems."},
+  {id:"scenario-lab",title:"Scenario Lab",group:"Planning",top:true,icon:"∆",desc:"Transparent simplified scenarios for staffing, tutoring, CTE, broadband and shared-teacher capacity."},
+  {id:"project-generator",title:"Project Generator",group:"Planning",icon:"＋",desc:"Build and compare local education-capacity interventions with transparent criteria."},
+  {id:"action-plans",title:"Action Plans",group:"Planning",icon:"☑",desc:"Generate 30/60/90-day, one-year and five-year capacity roadmaps."},
+  {id:"funding",title:"Funding",group:"Evidence & Resources",icon:"$",desc:"Funding-source registry with verification status; never represents unverified opportunities as active."},
+  {id:"research",title:"Research & Evidence",group:"Evidence & Resources",top:true,icon:"◉",desc:"Evidence classification, provenance, freshness and source registry."},
+  {id:"documents",title:"Government Documents",group:"Evidence & Resources",icon:"§",desc:"Neutral library of official guidance, rules, plans, legislation and workforce documents."},
+  {id:"oer",title:"Open Educational Resources",group:"Evidence & Resources",icon:"◫",desc:"Searchable architecture for licensed learning resources; preserve source and license metadata."},
+  {id:"portfolio",title:"Skills Portfolio",group:"My Workspace",icon:"☆",desc:"Local-first projects, certifications, courses, volunteer work, technical skills and internships."},
+  {id:"meta-prompts",title:"Meta-Prompt Engine",group:"My Workspace",icon:"✧",desc:"Generate structured prompts from geography, learner type, shortage, subject, budget and timeline."},
+  {id:"module-atlas",title:"91-Module Atlas",group:"My Workspace",icon:"☷",desc:"Complete implementation atlas for every requested capability."},
+  {id:"about",title:"About / Safety / Licenses",group:"My Workspace",icon:"ⓘ",desc:"Zero-harm doctrine, privacy, child safety, limitations, attributions and deployment notes."}
+];
+
+const MODULES = [
+[1,"Primary objective","Systemwide","Recruit, retain and support educators while expanding student access, pathways and local planning."],
+[2,"Capacity equation","Systemwide","Teachers + support staff + families + mentors + infrastructure + curriculum + time + community expertise + opportunity pathways."],
+[3,"System architecture","Platform","Semantic HTML, responsive CSS, vanilla JS, progressive enhancement, local data and honest failure states."],
+[4,"Universal interface","Platform","Sticky top navigation and collapsible side navigation derived from one route registry."],
+[5,"User modes","Platform","Nineteen role-aware views that change priorities without hiding general information."],
+[6,"Texas learning dashboard","Planning","Answer where gaps exist, what pathways exist and what feasible actions are available."],
+[7,"Teacher capacity map","Educators","Planning layer for vacancies, shortage areas, turnover, certification and preparation programs; no fabricated vacancy counts."],
+[8,"Shortage-area explorer","Educators","Show certification route, prerequisites, local need indicators and verified programs by shortage area."],
+[9,"Teacher pathway navigator","Educators","Interest → credentials → route → preparation → exams → clinical experience → hiring → induction."],
+[10,"Paraprofessional-to-teacher","Educators","Degree completion, tuition support, certification, work-study alignment and mentorship."],
+[11,"Substitute capacity","Educators","Eligibility, onboarding, training, subject familiarity, scheduling and retention."],
+[12,"Retired educator network","Educators","Voluntary tutoring, mentoring, curriculum support, substitute work, coaching and community learning."],
+[13,"Teacher retention engine","Educators","Record workload, compensation, housing, commute, support, growth, admin burden, planning time and climate."],
+[14,"Workload audit","Educators","Estimate instruction, planning, grading, meetings, paperwork, communication and extracurricular time."],
+[15,"Teacher support inventory","Educators","Track coaches, aides, counselors, librarians, IT, special-education and behavioral supports."],
+[16,"Mentor teacher network","Educators","Match mentor availability, subject/grade, schedule, support goal and check-ins without public personal data."],
+[17,"Student pathway OS","Learners","Middle school → high school → CTE / dual credit / college / apprenticeship / employment."],
+[18,"Interest-to-pathway matching","Learners","Connect interests to courses, credentials, CTE, apprenticeships and colleges without deterministic recommendations."],
+[19,"Career & technical education","Opportunity","Sector-based skills, certifications, coursework, employers and education routes."],
+[20,"Apprenticeship navigator","Opportunity","Entry requirements, duration, classroom component, paid work and credentials with active-listing verification."],
+[21,"Dual-credit navigator","Opportunity","Eligibility, partner colleges, transferability, cost and scheduling with editable plans."],
+[22,"College pathway planner","Opportunity","Compare community college, university, technical college, transfer and certificates."],
+[23,"Cost-of-education calculator","Opportunity","Compare tuition, fees, books, transport, housing and lost work time; estimates are not guarantees."],
+[24,"Student skills portfolio","Learners","Locally record projects, certifications, courses, volunteer work, technical skills and internships."],
+[25,"Tutoring OS","Support","Subject, grade, schedule, modality, volunteer/paid and school-approved options with safeguarding."],
+[26,"Tutor matching","Support","Match subject, grade, language, schedule, geography and mode only inside approved oversight structures."],
+[27,"Mentoring","Support","Goals, frequency, guardian/school controls and documented expectations."],
+[28,"Family learning OS","Support","Homework, reading, math, communication, attendance, learning plans and digital tools."],
+[29,"Early literacy","Learning","Phonological awareness, decoding, fluency, vocabulary and comprehension with authoritative research."],
+[30,"Numeracy","Learning","Arithmetic, fractions, ratios, algebra foundations and problem solving."],
+[31,"STEM OS","Learning","Project-based physics, chemistry, biology, engineering, environmental science, robotics, space, energy and water."],
+[32,"Computer science","Learning","Computational thinking, coding, web, data, cybersecurity and AI literacy through transferable concepts."],
+[33,"AI literacy","Learning","Capabilities, limitations, hallucinations, bias, privacy, verification, citation and responsible prompting."],
+[34,"Digital literacy","Learning","Search, source evaluation, privacy, passwords, scams, online safety, documents, sheets and collaboration."],
+[35,"Open educational resources","Resources","Search by subject, grade, format, license, accessibility and language while respecting licenses."],
+[36,"Curriculum resource bank","Resources","Save lessons, activities, assessments, projects and references with source/license metadata."],
+[37,"Special education","Learning","Accommodations, IEP literacy, assistive technology, family resources and transition planning; no legal conclusions."],
+[38,"Accessibility","Platform","Screen readers, captions, dyslexia-friendly options, keyboard access and accessible documents."],
+[39,"Bilingual / ESL","Learning","English learners, bilingual education, family access, educator pathways and dual-language resources."],
+[40,"School-community expert network","Support","Verified experts contribute talks, workshops, mentorship, demonstrations and projects under safeguarding workflows."],
+[41,"Library integration","Support","Tutoring, internet, digital literacy, makerspaces, homework and career resources."],
+[42,"School partnership directory","Support","Record employers, colleges, libraries, nonprofits and apprenticeship sponsors."],
+[43,"Workforce alignment","Opportunity","Map industries → occupations → skills → certifications → programs using current labor data."],
+[44,"Skills gap explorer","Opportunity","Compare current job demand and long-term projections against available training."],
+[45,"School-to-work pipeline","Opportunity","Learning → skill → credential → work-based learning → employment, with leak-point analysis."],
+[46,"Employer partnership OS","Opportunity","Employers can define skills needs, internships, apprenticeships, equipment donations and mentors."],
+[47,"Internship navigator","Opportunity","Search, eligibility, applications, scheduling and transportation with student privacy."],
+[48,"Rural education","Place","Long travel, broadband, shortages, advanced courses, CTE and transportation."],
+[49,"Shared teacher model","Place","Regional sharing for specialized educators with scheduling and certification constraints."],
+[50,"Mobile learning labs","Place","Traveling STEM, welding, robotics, healthcare simulation and agriculture labs."],
+[51,"School transportation","Integration","Assess commute, extracurricular, CTE and apprenticeship access; designed to connect with Texas Mobility OS."],
+[52,"Housing + teacher retention","Integration","Explore housing cost, commute and teacher pay together without treating housing as a sole cause."],
+[53,"Health + learning","Integration","Attendance, nurses, mental-health resources and healthcare access; designed to connect with Texas Health OS."],
+[54,"Food + learning","Integration","School meals, food insecurity, gardens and nutrition education; designed to connect with Texas Food OS."],
+[55,"Energy + schools","Integration","Energy cost, cooling, backup power and resilience; designed to connect with Texas Energy OS."],
+[56,"Water + schools","Integration","Drinking water, conservation, gardens and drought resilience; designed to connect with Texas Water OS."],
+[57,"Student opportunity map","Place","Map CTE, dual credit, apprenticeships, colleges, libraries and internships without student PII."],
+[58,"District capacity profile","Place","Enrollment, staffing, vacancies, experience, shortages, CTE, dual credit, counselors, libraries and ratios."],
+[59,"County learning profile","Place","Population, districts, schools, postsecondary, training, workforce demand, broadband and transportation."],
+[60,"Regional Texas profiles","Place","Gulf Coast, RGV, Central, North, East, West, Panhandle, Permian Basin and rural Texas."],
+[61,"Project generator","Planning","Problem, population, subject, intervention, partners, staffing, cost, timeline, location, evidence and metrics."],
+[62,"Project prioritization","Planning","Compare served population, educators added, cost, time, evidence, accessibility, rural reach and sustainability with visible logic."],
+[63,"Scenario lab","Planning","Simplified staffing, turnover, tutoring, CTE, broadband and regional-sharing scenarios."],
+[64,"Teacher pipeline model","Planning","Interest → preparation → certification → hiring → induction → retention, tracking losses at each stage."],
+[65,"Student pathway model","Planning","Enrollment → completion → credential → work-based learning → postsecondary/employment."],
+[66,"Capacity scorecard","Planning","Locally defined indicators for availability, coverage, tutoring, CTE, dual credit, apprenticeships, broadband, transport and partnerships."],
+[67,"Action plans","Planning","Generate 30/60/90-day, one-year and five-year roadmaps."],
+[68,"Funding navigator","Resources","Verified teacher preparation, workforce, CTE, apprenticeship, rural, technology and special-education sources."],
+[69,"Government document library","Evidence","TEA guidance, certification rules, shortage documents, workforce reports, district/state plans and applicable legislation."],
+[70,"Civic participation","Evidence","Neutral procedural information for boards, planning, advisory groups, CTE/workforce boards and public comment."],
+[71,"Research requirement","Evidence","Prioritize TEA, THECB, TWC, ED, BLS, NCES, colleges/universities and peer-reviewed work."],
+[72,"Evidence classification","Evidence","A official measured; B peer reviewed; C institutional; D preliminary; E modeled; F conceptual."],
+[73,"Data provenance","Evidence","Source, publisher, date, geography, frequency, retrieval date, limitations and license."],
+[74,"Data freshness","Evidence","Live, recent, cached, historical or unknown."],
+[75,"Search","Platform","Search pathways, programs, resources, projects, documents, research and glossary."],
+[76,"Accessibility target","Platform","WCAG 2.2 AA target: keyboard, screen readers, contrast, captions, reduced motion, touch targets and scalable text."],
+[77,"Privacy","Safety","Personal student data local by default; do not expose grades, disability, identity, address or records without explicit action."],
+[78,"Child safety","Safety","No unsupervised contact between minors and unknown adults; guardian/school oversight, verified organizations and reporting workflows."],
+[79,"Data sovereignty","Safety","Export, import, inspect, delete, reset and back up; no hidden telemetry."],
+[80,"Security","Safety","Validated imports, safe rendering, defensive parsing, no credentials, HTTPS/CSP guidance and optional integrity hashes."],
+[81,"Offline mode","Platform","Local plans, pathways, lesson references, schedules, projects and cached metadata; stale information is marked."],
+[82,"Print mode","Platform","Printable pathway, certification, tutoring, apprenticeship, district and project briefs."],
+[83,"Visual design","Platform","Pathway networks, skill trees, constellations, classroom diagrams, workforce maps and credential ladders."],
+[84,"Learning HUD","Platform","Skills built, pathways explored, tutoring hours, projects, credentials and mentor connections; never gates learning."],
+[85,"Meta-prompt engine","Planning","Compose context-rich prompts from geography, role, subject, pathway, budget, timeline and shortage."],
+[86,"Project discovery engine","Planning","Generate candidate interventions from local conditions; require local evaluation."],
+[87,"Success metrics","Planning","Track measured teachers/tutors/mentors/pathways/credentials/apprenticeships/CTE/partnerships separately from modeled outcomes."],
+[88,"Texas learning roadmap","Planning","NOW / NEXT / EMERGING / FRONTIER by stakeholder from learner to state."],
+[89,"Zero-harm / anti-inversion","Safety","Improve access, opportunity, educator capacity, autonomy and mobility; prohibit exploitation, manipulation, concealed uncertainty and unreviewed high-stakes automation."],
+[90,"Attributions & licenses","Safety","Credit Ricky Foster + Navi / Planetary Restoration Archive plus datasets, curricula, OER, APIs, research and open-source patterns."],
+[91,"Final quality requirement","Systemwide","A genuine operating system: users can learn, explore, compare, plan, teach, mentor, connect, measure, record, export, coordinate and act."]
+];
+
+const SOURCES = [
+ {id:"tea-shortage",title:"TEA — Teacher Shortage Areas",publisher:"Texas Education Agency",type:"A",fresh:"Recent",verified:"2026-09-27",url:"https://tea.texas.gov/educators/certification/student-loan-forgiveness-teachers",use:"2026–27 declared shortage areas and critical shortage areas.",limits:"State-declared categories do not substitute for district-level vacancy data."},
+ {id:"tea-cert",title:"TEA — Becoming a Classroom Teacher in Texas",publisher:"Texas Education Agency",type:"A",fresh:"Recent",verified:"2026-09-27",url:"https://tea.texas.gov/educators/certification/initial-certification/becoming-classroom-teacher-texas",use:"Official initial-certification requirements and links to approved programs.",limits:"Requirements can change; confirm before acting."},
+ {id:"tea-cert-main",title:"TEA — Educator Certification",publisher:"Texas Education Agency",type:"A",fresh:"Recent",verified:"2026-09-27",url:"https://tea.texas.gov/educators/certification/certification",use:"Certification, assignment, permits, waivers and current implementation notices.",limits:"District-specific implementation may differ within law/rule."},
+ {id:"thecb-fast",title:"THECB — Financial Aid for Swift Transfer (FAST)",publisher:"Texas Higher Education Coordinating Board",type:"A",fresh:"Recent",verified:"2026-09-27",url:"https://www.highered.texas.gov/student-financial-aid-programs/fast/",use:"Dual-credit funding, participation and eligibility guidance.",limits:"Participation and annual rates can change."},
+ {id:"thecb-dual",title:"THECB — Dual Credit FAQ",publisher:"Texas Higher Education Coordinating Board",type:"A",fresh:"Recent",verified:"2026-09-27",url:"https://www.highered.texas.gov/dual-credit-frequently-asked-questions/",use:"General guidance on dual-credit partnerships and eligibility.",limits:"THECB states FAQ guidance does not itself have formal legal bearing."},
+ {id:"thecb-pos",title:"THECB — Programs of Study",publisher:"Texas Higher Education Coordinating Board",type:"A",fresh:"Recent",verified:"2026-09-27",url:"https://www.highered.texas.gov/workforce-education-overview/programs-of-study/",use:"Texas career clusters and Programs of Study structure.",limits:"Institutional offerings vary."},
+ {id:"twc-lmi",title:"TWC — Labor Market & Career Information",publisher:"Texas Workforce Commission",type:"A",fresh:"Live",verified:"2026-09-27",url:"https://lmi.twc.texas.gov/",use:"Current labor market, career, internship and training exploration tools.",limits:"Different products have different update schedules and methodologies."},
+ {id:"twc-sti",title:"TWC — State Training Inventory",publisher:"Texas Workforce Commission",type:"A",fresh:"Live",verified:"2026-09-27",url:"https://lmi.twc.texas.gov/apps/sti/",use:"Training providers, programs, region and selected enrollment/graduation information.",limits:"Availability and completeness vary by provider/program."},
+ {id:"nces",title:"NCES — National Center for Education Statistics",publisher:"U.S. Department of Education",type:"A",fresh:"Recent",verified:"2026-09-27",url:"https://nces.ed.gov/",use:"Federal education datasets and institutional statistics.",limits:"Release lags vary."},
+ {id:"bls",title:"BLS — Occupational Employment and Wage Statistics",publisher:"U.S. Bureau of Labor Statistics",type:"A",fresh:"Recent",verified:"2026-09-27",url:"https://www.bls.gov/oes/",use:"Occupational employment and wage estimates.",limits:"Survey estimates; not current job openings."},
+ {id:"apprenticeship",title:"Apprenticeship.gov — Apprenticeship Job Finder",publisher:"U.S. Department of Labor",type:"A",fresh:"Live",verified:"2026-09-27",url:"https://www.apprenticeship.gov/apprenticeship-job-finder",use:"Search registered apprenticeship opportunities.",limits:"Verify individual listing status and eligibility with sponsor."},
+ {id:"eric",title:"ERIC — Education Research",publisher:"Institute of Education Sciences",type:"C",fresh:"Live",verified:"2026-09-27",url:"https://eric.ed.gov/",use:"Research discovery; individual evidence quality varies.",limits:"Index includes peer-reviewed and non-peer-reviewed material; classify each item separately."}
+];
+
+const SHORTAGES_2026 = [
+ "Bilingual / English as a Second Language",
+ "Career & Technical Education — secondary only",
+ "Computer Science / Technology Applications",
+ "English Language Arts & Reading — secondary only",
+ "Special Education"
+];
+
+const CRITICAL_SHORTAGES_2026 = [
+ "Bilingual / English as a Second Language",
+ "Career & Technical Education — secondary only",
+ "Computer Science / Technology Applications",
+ "Special Education"
+];
+
+const CTE_CLUSTERS_2026 = [
+"Agriculture, Food & Natural Resources","Architecture & Engineering","Arts, A/V Technology & Communications",
+"Business, Marketing & Finance","Construction","Education & Training","Energy","Health Science","Hospitality & Tourism",
+"Human Services","Information Technology","Law & Public Service","Manufacturing","Transportation, Distribution & Logistics"
+];
+
+const PATHWAY_MATCH = {
+ healthcare:["Health Science CTE","Nursing/allied health certificate","Community college transfer","Registered apprenticeship where available"],
+ construction:["Construction CTE","Skilled-trade apprenticeship","Industry credential","Community/technical college"],
+ energy:["Energy CTE","Electrical/instrumentation pathway","Engineering/technical degree","Apprenticeship where available"],
+ agriculture:["Agriculture, Food & Natural Resources CTE","FFA/SAE-style work-based learning","Agricultural technology","University pathway"],
+ technology:["Information Technology CTE","Computer science coursework","Cybersecurity credential","College/university computing"],
+ "public service":["Law & Public Service CTE","Emergency/public safety training","Public administration","Community service projects"],
+ arts:["Arts, A/V Technology & Communications CTE","Portfolio pathway","Technical production","College/university arts"],
+ manufacturing:["Manufacturing CTE","Mechatronics/industrial maintenance","Apprenticeship","Technical college"],
+ business:["Business, Marketing & Finance CTE","Entrepreneurship project","Industry credential","College business pathway"]
+};
+
+const I18N = {
+ en:{dashboard:"Dashboard",students:"Students",teachers:"Teachers",pathways:"Pathways",tutoring:"Tutoring",workforce:"Workforce",resources:"Resources",research:"Research",settings:"Settings"},
+ es:{dashboard:"Panel",students:"Estudiantes",teachers:"Docentes",pathways:"Rutas",tutoring:"Tutoría",workforce:"Empleo",resources:"Recursos",research:"Investigación",settings:"Ajustes"}
+};
+
+const state = {
+ route:"overview", mode:localStorage.getItem("txlo:mode")||"student",
+ xp:Number(localStorage.getItem("txlo:xp")||0), reduced:localStorage.getItem("txlo:reduced")==="1",
+ hud:localStorage.getItem("txlo:hud")!=="0"
+};
+
+const $ = (s,root=document)=>root.querySelector(s);
+const $$ = (s,root=document)=>[...root.querySelectorAll(s)];
+const esc = (v)=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+const clamp=(n,a,b)=>Math.min(b,Math.max(a,Number(n)||0));
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("show"),2400)}
+function addXP(n=1){state.xp+=n;localStorage.setItem("txlo:xp",state.xp);$("#xpMeter").textContent=`XP ${state.xp}`}
+function sourceBy(id){return SOURCES.find(s=>s.id===id)}
+function sourceLink(id,label){
+  const s=sourceBy(id); if(!s)return "";
+  return `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(label||s.title)}</a> <span class="badge">${s.type}</span>`;
+}
+function evidenceBadge(letter){return `<span class="badge" title="${esc(APP.evidence[letter])}">${letter} · ${esc(APP.evidence[letter])}</span>`}
+function sectionTitle(kicker,title,extra=""){return `<div class="section-title"><div><div class="kicker">${kicker}</div><h2>${title}</h2></div>${extra}</div>`}
+
+const DB = {
+ db:null,
+ async open(){
+   if(!("indexedDB" in window)) return null;
+   return new Promise((resolve,reject)=>{
+     const req=indexedDB.open("tx-learning-os",1);
+     req.onupgradeneeded=()=>{const db=req.result;["records","portfolio","projects"].forEach(n=>{if(!db.objectStoreNames.contains(n))db.createObjectStore(n,{keyPath:"id"})})};
+     req.onsuccess=()=>{DB.db=req.result;resolve(DB.db)};
+     req.onerror=()=>reject(req.error);
+   });
+ },
+ async put(store,obj){
+   if(!DB.db) return false;
+   return new Promise((resolve,reject)=>{const tx=DB.db.transaction(store,"readwrite");tx.objectStore(store).put(obj);tx.oncomplete=()=>resolve(true);tx.onerror=()=>reject(tx.error)});
+ },
+ async all(store){
+   if(!DB.db)return [];
+   return new Promise((resolve,reject)=>{const r=DB.db.transaction(store).objectStore(store).getAll();r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)});
+ },
+ async clearAll(){
+   if(!DB.db)return;
+   for(const s of ["records","portfolio","projects"]) await new Promise((resolve,reject)=>{const tx=DB.db.transaction(s,"readwrite");tx.objectStore(s).clear();tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)});
+ }
+};
+
+function setupNav(){
+ const topIds=["overview","student-pathways","teacher-capacity","cte","workforce","research"];
+ $("#topnav").innerHTML=topIds.map(id=>{const r=ROUTES.find(x=>x.id===id);return `<a href="#${r.id}" data-route="${r.id}">${r.title}</a>`}).join("");
+ const groups=[...new Set(ROUTES.map(r=>r.group))];
+ $("#tree").innerHTML=groups.map(g=>`<div class="tree-group">${g}</div>`+ROUTES.filter(r=>r.group===g).map(r=>`<a href="#${r.id}" data-route="${r.id}"><span>${r.icon}</span><span>${r.title}</span></a>`).join("")).join("");
+ $("#modeSelect").innerHTML=USER_MODES.map(m=>`<option ${m===state.mode?"selected":""}>${m}</option>`).join("");
+}
+
+function updateActive(){
+ $$("[data-route]").forEach(a=>a.toggleAttribute("aria-current",a.dataset.route===state.route));
+ const r=ROUTES.find(x=>x.id===state.route)||ROUTES[0];
+ $("#breadcrumbs").textContent=`Texas Learning OS / ${r.group} / ${r.title}`;
+ document.title=`${r.title} — Texas Learning & Teacher Capacity OS`;
+}
+
+function currentModePanel(){
+ const mode=state.mode;
+ const map={
+ student:["Explore three possible pathways","Save one skills/interest record","Check local transportation and cost constraints"],
+ parent:["Review a learner pathway together","Check tutoring safeguards","Use the family learning resources"],
+ teacher:["Run a workload audit","Record support gaps","Explore mentor/professional-growth options"],
+ paraprofessional:["Explore certification routes","Identify degree-completion constraints","Build a mentor + tuition-support plan"],
+ "school administrator":["Map staffing and support gaps","Build a 90-day capacity project","Verify source freshness before decisions"],
+ employer:["Define skills and work-based-learning capacity","Explore CTE alignment","Use safeguarded internship/apprenticeship pathways"],
+ librarian:["Inventory learning services","Add digital-literacy and tutoring capacity","Connect library services to local profiles"],
+ researcher:["Inspect provenance and evidence class","Export local scenario records","Avoid mixing measured and modeled outcomes"]
+ };
+ const items=map[mode]||["Explore relevant pathways","Record local constraints","Build an evidence-linked action plan"];
+ return `<div class="card"><div class="kicker">Mode · ${esc(mode)}</div><h3>Suggested next actions</h3><ul class="compact">${items.map(x=>`<li>${x}</li>`).join("")}</ul><button onclick="openSettings()">Change mode</button></div>`;
+}
+
+function renderOverview(){
+ return `
+ <section class="hero">
+   <div class="kicker">Texas · public planning prototype · verified-source registry ${APP.verified}</div>
+   <h1>Increase the number of capable people who can teach, mentor, guide, train and connect learners to opportunity.</h1>
+   <p>Education is treated here as a connected capacity system: teachers + support staff + families + mentors + infrastructure + curriculum + time + community expertise + opportunity pathways. The system avoids reducing quality to test scores alone.</p>
+   <div class="actions">
+     <a class="btn primary" href="#teacher-certification">Build a teacher pathway</a>
+     <a class="btn" href="#student-pathways">Explore student options</a>
+     <a class="btn" href="#project-generator">Create a local project</a>
+   </div>
+ </section>
+
+ <section class="section grid g4" aria-label="System status">
+  <article class="card"><div class="kicker">2026–27 TEA snapshot</div><div class="stat">5<small>declared teacher shortage areas</small></div><p>Use district data for local vacancy decisions.</p></article>
+  <article class="card"><div class="kicker">User modes</div><div class="stat">${USER_MODES.length}<small>role-aware views</small></div><p>No mode hides general information.</p></article>
+  <article class="card"><div class="kicker">System atlas</div><div class="stat">${MODULES.length}<small>requested capabilities mapped</small></div><p>Searchable implementation architecture.</p></article>
+  <article class="card"><div class="kicker">Privacy</div><div class="stat">Local<small>personal records by default</small></div><p>Export only when you choose.</p></article>
+ </section>
+
+ <section class="section grid g2">
+  <div>
+    ${sectionTitle("Current evidence","Verified context, not permanent assumptions")}
+    <div class="card">
+      <h3>Texas teacher shortage areas — 2026–27</h3>
+      <div class="pillrow">${SHORTAGES_2026.map(x=>`<span class="tag">${x}</span>`).join("")}</div>
+      <p>TEA also identifies four of these as critical shortage areas for specified federal teacher-loan/TEACH Grant purposes: ${CRITICAL_SHORTAGES_2026.join("; ")}.</p>
+      <p>${sourceLink("tea-shortage","Official TEA source")} <span class="badge">Verified ${APP.verified}</span></p>
+    </div>
+    <div class="card section">
+      <h3>Dual credit: verify before planning costs</h3>
+      <p>THECB's FAST program can make eligible dual-credit coursework no-cost to qualifying students at participating institutions. Participation, eligibility and annual rates can change; verify the current program before building a plan.</p>
+      <p>${sourceLink("thecb-fast","THECB FAST")} · ${sourceLink("thecb-dual","Dual Credit FAQ")}</p>
+    </div>
+  </div>
+  <div>
+    ${sectionTitle("Your workspace","Role-aware without locking you in")}
+    ${currentModePanel()}
+    <div class="card section">
+      <div class="kicker">Capacity question set</div>
+      <ol>
+        <li>Where is capacity missing?</li><li>What already exists?</li><li>Which pathways could expand capacity?</li>
+        <li>How can learners connect to opportunity?</li><li>Which interventions are feasible locally?</li>
+      </ol>
+    </div>
+  </div>
+ </section>
+
+ <section class="section">
+   ${sectionTitle("System map","Move from fragmented symptoms to actionable capacity")}
+   <div class="steps" aria-label="Capacity workflow">
+     ${["Observe gaps","Verify evidence","Map assets","Compare pathways","Design project","Safeguard","Measure","Iterate"].map((x,i)=>`<div class="step"><span class="badge">${i+1}</span><strong>${x}</strong></div>`).join("")}
+   </div>
+ </section>
+
+ <section class="section grid g3">
+  <div class="card"><h3>Educator capacity</h3><p>Recruitment, certification, paraprofessional pathways, substitute planning, retired educators, retention, workload and mentoring.</p><a href="#teacher-capacity">Open educator system →</a></div>
+  <div class="card"><h3>Learner opportunity</h3><p>CTE, dual credit, apprenticeships, college, tutoring, mentoring, family supports and skills portfolios.</p><a href="#student-pathways">Open learner system →</a></div>
+  <div class="card"><h3>Place-based capacity</h3><p>Rural access, broadband, transportation, housing, health, food, energy, water and local workforce demand.</p><a href="#local-profiles">Open local profiles →</a></div>
+ </section>`;
+}
+
+function renderTeacherCapacity(){
+ return `
+ <section class="hero"><div class="kicker">Educator capacity</div><h1>Find where teaching capacity leaks out—and which local pathways could rebuild it.</h1><p>Vacancy counts are not fabricated. Add district-measured data locally, link to source/provenance, and keep statewide shortage categories separate from local staffing evidence.</p></section>
+ <section class="section grid g2">
+   <div class="card"><h2>Teacher pipeline model</h2><div class="formgrid" id="teacherPipe">
+     ${["Interest","Preparation","Certification","Hiring","Induction","Retention"].map((x,i)=>`<label>${x}<input type="number" min="0" data-pipe="${x}" value="${[100,78,68,58,54,48][i]}"></label>`).join("")}
+   </div><button class="section primary" id="calcTeacherPipe">Analyze pipeline</button><div id="teacherPipeOut" class="output section">Adjust stages to local measured counts, then analyze. Values here are examples only.</div></div>
+   <div>
+    <div class="card"><h2>2026–27 shortage explorer</h2><div class="pillrow">${SHORTAGES_2026.map(x=>`<button class="pill shortage-pill">${x}</button>`).join("")}</div><div id="shortageOut" class="output section">Select a shortage area. State designation does not prove a vacancy in a specific district.</div></div>
+    <div class="card section"><h3>Evidence discipline</h3><p>${evidenceBadge("A")} for official measured data; ${evidenceBadge("E")} for modeled scenarios; ${evidenceBadge("F")} for conceptual interventions. Keep them visibly separate.</p></div>
+   </div>
+ </section>
+ <section class="section grid g3">
+  ${["Paraprofessional → teacher","Retired educator network","Shared specialist teacher","Teacher residency / grow-your-own","Mentor teacher network","Support staff inventory"].map((x,i)=>`<div class="card"><span class="badge">Candidate intervention</span><h3>${x}</h3><p>${["Align degree completion, certification, work and mentorship.","Voluntary tutoring, coaching, curriculum and substitute capacity.","Explore regional scheduling for hard-to-staff specialties.","Partner with preparation providers and local schools.","Match subject/grade, schedule and support goals privately.","Inventory aides, counselors, librarians, coaches, IT and behavioral supports."][i]}</p></div>`).join("")}
+ </section>`;
+}
+
+function renderCertification(){
+ return `
+ <section class="hero"><div class="kicker">Teacher pathway navigator</div><h1>Build a Texas certification plan around the person—not one assumed route.</h1><p>Official requirements change. This navigator is planning support, not certification approval. Confirm all requirements with TEA and an approved educator preparation program.</p></section>
+ <section class="section grid g2">
+  <div class="card">
+   <h2>Pathway inputs</h2>
+   <div class="formgrid">
+    <label>Starting point<select id="certStart"><option>High school / no degree yet</option><option>Bachelor's degree or higher</option><option>Certified in another U.S. state/country</option><option>Industry experience / CTE interest</option><option>Educational aide / paraprofessional</option></select></label>
+    <label>Teaching interest<select id="certArea">${SHORTAGES_2026.map(x=>`<option>${x}</option>`).join("")}<option>Elementary / general</option><option>Other subject</option></select></label>
+    <label>Priority<select id="certPriority"><option>Lowest total cost</option><option>Earn while preparing</option><option>University-based preparation</option><option>Fastest feasible route</option><option>Strongest mentoring support</option></select></label>
+    <label>Location context<input id="certLoc" placeholder="County, region or district (optional)"></label>
+   </div>
+   <button class="primary section" id="buildCert">Build plan</button>
+   <button class="section" id="saveCert">Save locally</button>
+  </div>
+  <div class="card"><h2>Your planning sequence</h2><div id="certOut" class="output">Choose inputs and build a plan.</div></div>
+ </section>
+ <section class="section">
+  ${sectionTitle("Official anchor","TEA’s current certification framework")}
+  <div class="card">
+   <p>TEA describes five general requirements for becoming a certified classroom teacher: obtain the required degree where applicable, complete an approved educator preparation program, pass required certification exams, submit the state application, and complete fingerprinting/background-check requirements. Some CTE certificates have different degree rules.</p>
+   <p>${sourceLink("tea-cert","TEA: Becoming a Classroom Teacher")} · ${sourceLink("tea-cert-main","TEA: Certification")}</p>
+  </div>
+ </section>`;
+}
+
+function renderRetention(){
+ return `
+ <section class="hero"><div class="kicker">Teacher retention & workload</div><h1>Measure local pressures without pretending a checklist proves causation.</h1><p>The audit is a planning tool, never a performance evaluator. Use local observations, staff voice and stronger evidence together.</p></section>
+ <section class="section grid g2">
+  <div class="card"><h2>Weekly workload audit</h2>
+   <div class="formgrid" id="workloadForm">${["Instruction","Planning","Grading","Meetings","Paperwork","Communication","Extracurricular"].map((x,i)=>`<label>${x} hours<input type="number" min="0" max="100" step=".5" data-work="${x}" value="${[25,7,6,3,3,3,2][i]}"></label>`).join("")}</div>
+   <button class="primary section" id="calcWorkload">Calculate</button><button class="section" id="saveWorkload">Save locally</button>
+  </div>
+  <div class="card"><h2>Distribution</h2><div id="workloadOut" class="output">Run the audit to visualize distribution.</div></div>
+ </section>
+ <section class="section"><div class="card"><h2>Retention-factor inventory</h2><div class="grid g3" id="retentionFactors">${["Workload","Compensation","Housing","Commute","Classroom support","Professional growth","Administrative burden","Planning time","School climate"].map(x=>`<label>${x}<input type="range" min="0" max="10" value="5" data-retain="${x}"><small>0 = low local pressure · 10 = high local pressure</small></label>`).join("")}</div><button class="section" id="retentionSummary">Summarize local observations</button><div id="retentionOut" class="output section">This produces a descriptive local pressure index, not a causal model.</div></div></section>`;
+}
+
+function renderStudentPathways(){
+ return `
+ <section class="hero"><div class="kicker">Student pathway OS</div><h1>Explore multiple futures without locking a learner into one track.</h1><p>Pathways should remain revisable as interests, circumstances, costs and local opportunities change.</p></section>
+ <section class="section grid g2">
+  <div class="card"><h2>Interest-to-pathway explorer</h2><p>Select any interests that fit today.</p><div class="pillrow" id="interestPills">${Object.keys(PATHWAY_MATCH).map(x=>`<button class="pill interest-pill" aria-pressed="false">${x}</button>`).join("")}</div><button class="primary section" id="matchPath">Show pathway options</button><div id="pathOut" class="output section">No interests selected yet.</div></div>
+  <div class="card"><h2>Pathway model</h2><div class="steps">${["Middle School","High School","CTE / Dual Credit","Apprenticeship / College","Employment / Further Learning"].map((x,i)=>`<div class="step"><span class="badge">${i+1}</span><strong>${x}</strong></div>`).join("")}</div><p class="notice">This is a map of possibilities, not a sequence every learner must follow.</p></div>
+ </section>
+ <section class="section grid g3">
+  <div class="card"><h3>CTE</h3><p>Applied programs of study tied to skills and credentials.</p><a href="#cte">Explore CTE →</a></div>
+  <div class="card"><h3>Dual credit</h3><p>High-school and college credit can overlap, subject to institutional agreements and eligibility.</p><a href="#dual-credit">Explore dual credit →</a></div>
+  <div class="card"><h3>Apprenticeship</h3><p>Paid work + related instruction in registered and employer pathways where available.</p><a href="#apprenticeships">Explore apprenticeships →</a></div>
+ </section>`;
+}
+
+function renderCTE(){
+ return `
+ <section class="hero"><div class="kicker">Career & Technical Education</div><h1>Connect coursework, credentials, work-based learning and local industry.</h1><p>Texas' 2026 Programs of Study structure uses fourteen career clusters. Local offerings vary; verify programs with schools and colleges.</p></section>
+ <section class="section"><div class="module-grid">${CTE_CLUSTERS_2026.map(c=>`<article class="module"><span class="badge">2026 cluster</span><h3>${c}</h3><p>Explore: skills → coursework → credentials → work-based learning → employers → further education.</p><footer>${sourceLink("thecb-pos","THECB source")}</footer></article>`).join("")}</div></section>
+ <section class="section grid g2"><div class="card"><h2>Partnership design</h2><ul><li>Define a real skill need.</li><li>Confirm curriculum alignment.</li><li>Provide safe work-based learning.</li><li>Plan transport, scheduling and equipment.</li><li>Measure participation and credential outcomes.</li></ul></div><div class="card"><h2>Current-vs-projection rule</h2><p>Current openings, current employment and long-term projections are different measures. Label each source and date; do not merge them into a single “demand” number.</p>${sourceLink("twc-lmi","TWC Labor Market & Career Information")}</div></section>`;
+}
+
+function renderApprenticeships(){
+ return `
+ <section class="hero"><div class="kicker">Apprenticeships</div><h1>Make paid work-based learning legible and verifiable.</h1><p>Listings can expire. Treat directories as discovery tools and confirm status, sponsor, eligibility, location, pay structure and related instruction before acting.</p></section>
+ <section class="section grid g2">
+  <div class="card"><h2>Apprenticeship check</h2><div class="formgrid"><label>Occupation / trade<input id="appOcc" placeholder="e.g., electrician, healthcare, IT"></label><label>Texas region<input id="appRegion" placeholder="e.g., Gulf Coast"></label></div><button class="primary section" id="appPlanBtn">Build verification checklist</button><div id="appOut" class="output section"></div></div>
+  <div class="card"><h2>Official discovery sources</h2><p>${sourceLink("apprenticeship","Apprenticeship.gov job finder")}</p><p>${sourceLink("twc-sti","TWC State Training Inventory")}</p><p class="notice">The OS does not represent a program as active until the sponsor/listing is verified.</p></div>
+ </section>`;
+}
+
+function renderDualCredit(){
+ return `
+ <section class="hero"><div class="kicker">Dual credit</div><h1>Plan courses, cost, transfer and schedule together.</h1><p>Texas rules and institutional agreements matter. Verify current eligibility and transfer treatment with the student's school and partner college.</p></section>
+ <section class="section grid g2">
+  <div class="card"><h2>Plan builder</h2><div class="formgrid"><label>Course / subject<input id="dualCourse" placeholder="e.g., English Composition"></label><label>Partner college<input id="dualCollege" placeholder="College or university"></label><label>Credits<input id="dualCredits" type="number" min="0" value="3"></label><label>Estimated student cost<input id="dualCost" type="number" min="0" step=".01" value="0"></label></div><button class="primary section" id="dualPlan">Build plan</button><div id="dualOut" class="output section"></div></div>
+  <div class="card"><h2>FAST context</h2><p>THECB's FAST program provides a funding mechanism under which qualifying educationally disadvantaged students at participating public institutions can take eligible dual-credit coursework at no cost to the student. Verify institutional participation and current rules.</p><p>${sourceLink("thecb-fast","FAST program")} · ${sourceLink("thecb-dual","Dual Credit FAQ")}</p></div>
+ </section>`;
+}
+
+function renderCollege(){
+ return `
+ <section class="hero"><div class="kicker">College pathway planner</div><h1>Compare the whole cost of a pathway, not tuition alone.</h1><p>All calculator values are user-entered planning estimates, not guaranteed prices or aid offers.</p></section>
+ <section class="section"><div class="card"><h2>Two-path comparison</h2><div class="tablewrap"><table><thead><tr><th>Cost</th><th>Path A</th><th>Path B</th></tr></thead><tbody>${["Tuition","Fees","Books","Transportation","Housing","Lost work time"].map((x,i)=>`<tr><th>${x}</th><td><input type="number" min="0" value="${[5000,800,700,1200,6000,2500][i]}" data-cost="A"></td><td><input type="number" min="0" value="${[8500,1200,900,1800,10000,4000][i]}" data-cost="B"></td></tr>`).join("")}</tbody></table></div><button class="primary section" id="calcCost">Compare</button><div id="costOut" class="output section"></div></div></section>`;
+}
+
+function renderTutoring(){
+ return `
+ <section class="hero"><div class="kicker">Tutoring & mentoring OS</div><h1>Expand human support without weakening child-safety boundaries.</h1><p>This prototype plans supervised programs. It does not create unsupervised direct contact between minors and unknown adults.</p></section>
+ <section class="section grid g2">
+  <div class="card"><h2>Safeguarded tutoring plan</h2><div class="formgrid">
+   <label>Subject<input id="tutSubject" placeholder="Math, reading…"></label><label>Grade band<select id="tutGrade"><option>Elementary</option><option>Middle school</option><option>High school</option><option>Adult learner</option></select></label>
+   <label>Language<input id="tutLang" value="English"></label><label>Mode<select id="tutMode"><option>School supervised</option><option>Library supervised</option><option>Guardian supervised virtual</option><option>Approved organization</option></select></label>
+   <label>Frequency<input id="tutFreq" placeholder="e.g., 2 × 45 min/week"></label><label>Oversight owner<input id="tutOwner" placeholder="School, guardian, library, program"></label>
+  </div><button class="primary section" id="tutPlan">Generate plan</button><div id="tutOut" class="output section"></div></div>
+  <div class="card"><h2>Minimum safeguards</h2><ul><li>Verified organization / accountable adult.</li><li>Guardian or school controls for minors.</li><li>Clear meeting location / platform.</li><li>No public student PII.</li><li>Reporting and escalation workflow.</li><li>Documented expectations and boundaries.</li></ul></div>
+ </section>`;
+}
+
+function renderWorkforce(){
+ return `
+ <section class="hero"><div class="kicker">Education ↔ workforce</div><h1>Translate labor demand into learning options without confusing openings, employment and projections.</h1><p>Use current labor-market evidence, training supply and employer partnerships as distinct inputs.</p></section>
+ <section class="section grid g3">
+  <div class="card"><h3>Current labor market</h3><p>Employment and wage measures by geography and occupation.</p>${sourceLink("twc-lmi","Open TWC LMCI")}</div>
+  <div class="card"><h3>Training supply</h3><p>Providers and programs by Texas region and field of study.</p>${sourceLink("twc-sti","Open State Training Inventory")}</div>
+  <div class="card"><h3>Federal occupation data</h3><p>Occupational employment and wage estimates for cross-checking.</p>${sourceLink("bls","Open BLS OEWS")}</div>
+ </section>
+ <section class="section"><div class="card"><h2>Skills-gap comparison worksheet</h2><div class="formgrid"><label>Local industry / occupation<input id="wfOcc"></label><label>Current demand evidence<input id="wfDemand" placeholder="Source + date, not just a number"></label><label>Available training<input id="wfTraining" placeholder="Programs/providers"></label><label>Observed gap<input id="wfGap" placeholder="Skill, schedule, capacity, location…"></label></div><button class="section primary" id="wfPlan">Create evidence note</button><div id="wfOut" class="output section"></div></div></section>`;
+}
+
+function renderRural(){
+ return `
+ <section class="hero"><div class="kicker">Rural education</div><h1>Design around distance, connectivity, scarce specialists and local assets.</h1><p>Rural solutions should combine—not substitute blindly among—human teaching, shared capacity, transport, broadband and community expertise.</p></section>
+ <section class="section module-grid">
+ ${[
+ ["Shared specialist instructors","Regional scheduling for physics, computer science, bilingual or other hard-to-staff specialties."],
+ ["Virtual coursework","Use where broadband, supervision and course quality are adequate; do not assume online = accessible."],
+ ["Regional CTE hubs","Pool specialized equipment and instructors across districts."],
+ ["Community experts","Bring vetted local technical knowledge into schools under approval and safeguarding."],
+ ["Mobile labs","Traveling STEM, welding, robotics, healthcare simulation or agriculture capacity."],
+ ["Transportation coordination","Plan CTE, extracurricular and apprenticeship access alongside route/time constraints."]
+ ].map(x=>`<div class="module"><h3>${x[0]}</h3><p>${x[1]}</p><footer>${evidenceBadge("F")}</footer></div>`).join("")}
+ </section>`;
+}
+
+function renderLocalProfiles(){
+ return `
+ <section class="hero"><div class="kicker">Local profiles</div><h1>Build district and county capacity profiles from evidence you can inspect.</h1><p>Local records stay in this browser. Vacancy and staffing fields should cite the district/county source and date.</p></section>
+ <section class="section grid g2">
+  <div class="card"><h2>Profile editor</h2><div class="formgrid">
+   <label>Profile name<input id="profName" placeholder="District / county / region"></label><label>Profile type<select id="profType"><option>District</option><option>County</option><option>Region</option></select></label>
+   <label>Enrollment / population<input id="profPop" type="number" min="0"></label><label>Known educator vacancies<input id="profVac" type="number" min="0" placeholder="Leave blank if unknown"></label>
+   <label>CTE / dual-credit notes<textarea id="profPrograms"></textarea></label><label>Workforce / broadband / transport notes<textarea id="profInfra"></textarea></label>
+   <label>Source / provenance<input id="profSource" placeholder="Publisher, URL or document name"></label><label>Source date<input id="profDate" type="date"></label>
+  </div><button class="primary section" id="saveProfile">Save locally</button></div>
+  <div class="card"><h2>Saved profiles</h2><div id="profilesOut">Loading…</div></div>
+ </section>`;
+}
+
+function renderIntegration(){
+ return `
+ <section class="hero"><div class="kicker">Cross-system integration</div><h1>Learning capacity is affected by systems outside the classroom.</h1><p>These are integration interfaces, not claims that any one external factor explains education outcomes.</p></section>
+ <section class="section module-grid">
+ ${[
+ ["Mobility","Commute time, extracurricular transport, CTE access, apprenticeship access","Texas Mobility OS"],
+ ["Housing","Housing cost + commute + teacher pay, without claiming housing alone causes shortages","Texas Housing OS"],
+ ["Health","Attendance, school nurses, mental-health supports and healthcare access","Texas Health OS"],
+ ["Food","School meals, food insecurity, gardens and nutrition education","Texas Food OS"],
+ ["Energy","Energy costs, cooling, backup power and school resilience","Texas Energy OS"],
+ ["Water","Drinking water, conservation, school gardens and drought resilience","Texas Water OS"]
+ ].map(x=>`<div class="module"><h3>${x[0]} + learning</h3><p>${x[1]}</p><footer><span class="badge">Interface: ${x[2]}</span></footer></div>`).join("")}
+ </section>`;
+}
+
+function renderScenario(){
+ return `
+ <section class="hero"><div class="kicker">Scenario lab · ${APP.evidence.E}</div><h1>Explore “what if?” without laundering models into facts.</h1><p>All outputs are simplified relative-change scenarios. They do not predict real outcomes and must not be shown as measured data.</p></section>
+ <section class="section grid g2">
+  <div class="card"><h2>Inputs</h2><div class="formgrid">
+   <label>Baseline teacher capacity index<input id="scBase" type="number" min="1" value="100"></label>
+   <label>Vacancies change %<input id="scVac" type="number" value="20"></label>
+   <label>Turnover change %<input id="scTurn" type="number" value="-10"></label>
+   <label>Tutoring capacity change %<input id="scTut" type="number" value="100"></label>
+   <label>CTE enrollment change %<input id="scCte" type="number" value="25"></label>
+   <label>Broadband access change %<input id="scBroad" type="number" value="10"></label>
+   <label>Shared specialist model<select id="scShared"><option value="0">No</option><option value="5">Pilot</option><option value="10">Regional scale</option></select></label>
+  </div><button class="primary section" id="runScenario">Run simplified scenario</button><button class="section" id="saveScenario">Save inputs locally</button></div>
+  <div class="card"><h2>Modeled output</h2><div id="scenarioOut" class="output">Run the scenario.</div></div>
+ </section>`;
+}
+
+function renderProjectGenerator(){
+ return `
+ <section class="hero"><div class="kicker">Project generator</div><h1>Turn a capacity gap into a locally testable intervention.</h1><p>Scoring is transparent and user-entered. It is a comparison aid, not an official funding or policy ranking.</p></section>
+ <section class="section grid g2">
+  <div class="card"><h2>Project brief</h2><div class="formgrid">
+   <label>Project name<input id="pjName" placeholder="e.g., Rural bilingual mentor network"></label><label>Location<input id="pjLoc"></label>
+   <label>Problem<textarea id="pjProblem"></textarea></label><label>Population<textarea id="pjPop"></textarea></label>
+   <label>Intervention<textarea id="pjIntervention"></textarea></label><label>Partners<textarea id="pjPartners"></textarea></label>
+   <label>Estimated cost<input id="pjCost" type="number" min="0" value="50000"></label><label>Timeline months<input id="pjMonths" type="number" min="1" value="6"></label>
+  </div><h3>Comparison criteria (0–10)</h3><div class="grid g2">
+   ${["Students served","Educators added","Evidence strength","Accessibility","Rural reach","Sustainability"].map(x=>`<label>${x}<input type="range" min="0" max="10" value="5" data-pjscore="${x}"></label>`).join("")}
+  </div><button class="primary section" id="scoreProject">Build & score</button><button class="section" id="saveProject">Save locally</button></div>
+  <div class="card"><h2>Project output</h2><div id="projectOut" class="output">Complete the project brief.</div><p class="notice">Score = average of six equally weighted user-entered criteria. Change the inputs, not hidden weights.</p></div>
+ </section>`;
+}
+
+function renderActionPlans(){
+ return `
+ <section class="hero"><div class="kicker">Action plans</div><h1>Move from inventory to pilots to durable capacity.</h1><p>Plans are scaffolds. Local law, policy, budgets, safeguarding and evidence must shape implementation.</p></section>
+ <section class="section grid g2">
+  <div class="card"><h2>Plan generator</h2><div class="formgrid"><label>Goal<input id="apGoal" placeholder="e.g., increase special-education teacher pipeline"></label><label>Location<input id="apLoc"></label><label>Current assets<textarea id="apAssets"></textarea></label><label>Constraints<textarea id="apConstraints"></textarea></label></div><button class="primary section" id="buildActionPlan">Generate roadmap</button></div>
+  <div class="card"><h2>Roadmap</h2><div id="actionOut" class="output">Enter a goal and local context.</div></div>
+ </section>`;
+}
+
+function renderResearch(){
+ return `
+ <section class="hero"><div class="kicker">Research & evidence</div><h1>Every important number needs a source, date, geography and limitation.</h1><p>Evidence classes describe source/evidence status; they are not quality scores for people, schools or communities.</p></section>
+ <section class="section grid g2">
+  <div class="card"><h2>Evidence classification</h2>${Object.entries(APP.evidence).map(([k,v])=>`<div class="source"><span><strong>${k}</strong> — ${v}</span><span class="badge">${k}</span></div>`).join("")}</div>
+  <div class="card"><h2>Freshness labels</h2>${["Live","Recent","Cached","Historical","Unknown"].map(x=>`<div class="source"><span>${x}</span><span class="badge">${x}</span></div>`).join("")}<p class="notice">Freshness is not the same as evidence quality. A live feed can still be incomplete or methodologically limited.</p></div>
+ </section>
+ <section class="section">${sectionTitle("Source registry","Official and research discovery sources")}<div class="card">${renderSourceList()}</div></section>`;
+}
+
+function renderSourceList(filter=""){
+ const q=filter.toLowerCase();
+ return SOURCES.filter(s=>(s.title+" "+s.publisher+" "+s.use+" "+s.limits).toLowerCase().includes(q)).map(s=>`
+ <div class="source"><div><strong><a href="${s.url}" target="_blank" rel="noopener">${s.title}</a></strong><div class="muted">${s.publisher} · verified ${s.verified}</div><div>${s.use}</div><small>Limits: ${s.limits}</small></div><div><span class="badge">${s.type}</span> <span class="badge">${s.fresh}</span></div></div>`).join("") || `<p>No matching sources.</p>`;
+}
+
+function renderDocuments(){
+ const docs=[
+ ["TEA teacher shortage areas","State education guidance","Current declared shortage categories and federal-loan/TEACH Grant relevance","tea-shortage"],
+ ["TEA educator certification","Certification / implementation","Certification pathways, assignment requirements, permits/waivers and implementation notices","tea-cert-main"],
+ ["THECB dual-credit rules & FAQ","Higher education rules","General implementation guidance for dual-credit partnerships","thecb-dual"],
+ ["THECB FAST","Higher education funding","Dual-credit funding/participation and eligibility","thecb-fast"],
+ ["THECB Programs of Study","CTE / workforce education","2026 career-cluster structure and program-of-study governance","thecb-pos"],
+ ["TWC Labor Market & Career Information","Workforce","Current labor-market and education/workforce tools","twc-lmi"]
+ ];
+ return `
+ <section class="hero"><div class="kicker">Government document library</div><h1>Neutral, source-first public planning references.</h1><p>Dates and rule status matter. Proposed, adopted and effective are not interchangeable states.</p></section>
+ <section class="section"><div class="tablewrap"><table><thead><tr><th>Document/source</th><th>Jurisdiction / type</th><th>Practical use</th><th>Official source</th></tr></thead><tbody>${docs.map(d=>`<tr><td>${d[0]}</td><td>${d[1]}</td><td>${d[2]}</td><td>${sourceLink(d[3],"Open")}</td></tr>`).join("")}</tbody></table></div></section>
+ <section class="section grid g2"><div class="card"><h2>Civic participation</h2><p>Use school-board, district, SBOE/SBEC, THECB and workforce-board official meeting pages for agendas, procedures, public-comment windows and submission rules. Procedures vary by body and meeting.</p><p class="notice">This module provides procedural navigation only; it does not advocate a political position.</p></div><div class="card"><h2>Document record fields</h2><ul><li>Title and issuing body</li><li>Date and jurisdiction</li><li>Status: proposed / adopted / effective / superseded</li><li>Neutral summary</li><li>Practical implications</li><li>Official source and retrieval date</li></ul></div></section>`;
+}
+
+function renderFunding(){
+ return `
+ <section class="hero"><div class="kicker">Funding navigator</div><h1>Discover funding categories, then verify whether a specific opportunity is active.</h1><p>This prototype deliberately avoids inventing open grant rounds. Use official agency pages and confirm dates, eligibility, appropriation and application status.</p></section>
+ <section class="section module-grid">${[
+ ["Teacher preparation","TEA / approved EPP / federal teacher-support sources"],
+ ["CTE equipment & programs","TWC and education/workforce funding sources"],
+ ["Apprenticeships","TWC / U.S. Department of Labor apprenticeship sources"],
+ ["Dual credit","THECB FAST and institutional agreements"],
+ ["Rural education","TEA / federal rural education program sources"],
+ ["Special education","TEA / U.S. Department of Education program sources"]
+ ].map(x=>`<div class="module"><h3>${x[0]}</h3><p>${x[1]}</p><footer><span class="badge">Verify active status</span></footer></div>`).join("")}</section>`;
+}
+
+function renderOER(){
+ return `
+ <section class="hero"><div class="kicker">Open educational resources</div><h1>Find, save and reuse only with license and accessibility metadata intact.</h1><p>The architecture separates resource discovery from license verification. “Free to view” does not automatically mean “openly licensed.”</p></section>
+ <section class="section"><div class="card"><h2>OER record template</h2><div class="formgrid"><label>Title<input id="oerTitle"></label><label>Subject<input id="oerSubject"></label><label>Grade / level<input id="oerGrade"></label><label>License<input id="oerLicense" placeholder="e.g., CC BY 4.0 — verify"></label><label>Accessibility notes<textarea id="oerA11y"></textarea></label><label>Source URL<input id="oerUrl" type="url"></label></div><button class="section primary" id="oerSave">Save resource locally</button><div id="oerOut" class="output section"></div></div></section>`;
+}
+
+function renderPortfolio(){
+ return `
+ <section class="hero"><div class="kicker">Local-first skills portfolio</div><h1>Record evidence of learning without making it public by default.</h1><p>Projects, certifications, courses, volunteer work, technical skills and internships are stored locally and can be exported as JSON.</p></section>
+ <section class="section grid g2">
+  <div class="card"><h2>Add item</h2><div class="formgrid"><label>Type<select id="pfType"><option>Project</option><option>Certification</option><option>Course</option><option>Volunteer work</option><option>Technical skill</option><option>Internship</option></select></label><label>Title<input id="pfTitle"></label><label>Date<input id="pfDate" type="date"></label><label>Evidence / link<input id="pfEvidence"></label><label>Notes<textarea id="pfNotes"></textarea></label></div><button class="primary section" id="pfSave">Save locally</button></div>
+  <div class="card"><h2>Portfolio</h2><div id="pfOut">Loading…</div></div>
+ </section>`;
+}
+
+function renderMetaPrompts(){
+ return `
+ <section class="hero"><div class="kicker">Meta-prompt engine</div><h1>Generate context-rich planning prompts instead of generic “fix education” prompts.</h1><p>Outputs are planning prompts, not authoritative policy or legal conclusions.</p></section>
+ <section class="section grid g2">
+  <div class="card"><h2>Context inputs</h2><div class="formgrid">
+   <label>Geography<input id="mpGeo" placeholder="rural Panhandle district"></label><label>Learner type<input id="mpLearner" placeholder="high-school students"></label>
+   <label>Educator type<input id="mpEdu" placeholder="special education + bilingual"></label><label>Subject / pathway<input id="mpSubject" placeholder="computer science / CTE"></label>
+   <label>Budget<input id="mpBudget" placeholder="$250k pilot"></label><label>Timeline<input id="mpTime" placeholder="3 years"></label>
+   <label>Local shortage / constraint<textarea id="mpShort"></textarea></label><label>Assets<textarea id="mpAssets"></textarea></label>
+  </div><button class="primary section" id="genPrompt">Generate prompt</button></div>
+  <div class="card"><h2>Generated prompt</h2><div id="mpOut" class="output">Complete the context inputs.</div><button class="section" id="copyPrompt">Copy</button></div>
+ </section>`;
+}
+
+function renderModuleAtlas(){
+ return `
+ <section class="hero"><div class="kicker">Complete architecture</div><h1>91 requested capabilities, one searchable system atlas.</h1><p>Each capability remains modular so local deployments can deepen individual modules without breaking the shared shell.</p></section>
+ <section class="section"><label>Filter modules<input id="moduleFilter" type="search" placeholder="Try teacher, child safety, rural, evidence…"></label><div class="module-grid section" id="moduleGrid">${renderModules()}</div></section>`;
+}
+function renderModules(q=""){
+ q=q.toLowerCase();
+ return MODULES.filter(m=>m.slice(1).join(" ").toLowerCase().includes(q)).map(m=>`<article class="module"><span class="badge">#${m[0]}</span><span class="badge">${m[2]}</span><h3>${m[1]}</h3><p>${m[3]}</p></article>`).join("");
+}
+
+function renderAbout(){
+ return `
+ <section class="hero"><div class="kicker">Stewardship, not extraction</div><h1>Zero-harm / anti-inversion is a system requirement.</h1><p>The OS exists to improve access, learning, opportunity, educator capacity, autonomy and mobility—not to centralize control over learners.</p></section>
+ <section class="section grid g2">
+  <div class="card"><h2>Must not</h2><ul><li>Exploit student data.</li><li>Manipulate minors.</li><li>Automate high-stakes educational decisions without appropriate human oversight.</li><li>Discriminate.</li><li>Conceal uncertainty.</li><li>Replace teachers with technology where human teaching is necessary.</li></ul></div>
+  <div class="card"><h2>Privacy & child safety</h2><ul><li>Personal learner data local by default.</li><li>No public grades, disability data, addresses or school records by default.</li><li>No unsupervised minor/unknown-adult matching.</li><li>Guardian/school oversight and verified-organization workflows.</li><li>Explicit export; no hidden telemetry.</li></ul></div>
+ </section>
+ <section class="section grid g2">
+  <div class="card"><h2>Attributions & licenses</h2><p><strong>Ricky Foster + Navi</strong><br>Planetary Restoration Archive<br>Systems architecture and concept.</p><p>External datasets, curricula, OER, libraries, APIs, research and adapted open-source patterns should retain their own attribution and license terms when integrated.</p></div>
+  <div class="card"><h2>Deployment truth</h2><p>This file works as a standalone browser application with local storage/IndexedDB features. A service worker cannot honestly be claimed under <code>file://</code>. For installable PWA behavior, deploy over HTTPS and add a versioned manifest/service worker bundle.</p><p>Use a restrictive Content Security Policy when hosted, avoid embedded credentials, and keep network integrations opt-in and source-specific.</p></div>
+ </section>
+ <section class="section"><div class="card"><h2>Integrity check</h2><button id="hashBtn">Compute this loaded document's SHA-256</button><div id="hashOut" class="output section">Hashing checks byte integrity of this loaded HTML representation; it does not establish authorship or provenance by itself.</div></div></section>`;
+}
+
+function renderGeneric(route){
+ const related=MODULES.filter(m=>{
+   const hay=(m[1]+" "+m[2]+" "+m[3]).toLowerCase();
+   return route.title.toLowerCase().split(/\s|\/|&/).filter(x=>x.length>3).some(k=>hay.includes(k));
+ }).slice(0,12);
+ return `
+ <section class="hero"><div class="kicker">${esc(route.group)}</div><h1>${esc(route.title)}</h1><p>${esc(route.desc)}</p></section>
+ <section class="section"><div class="module-grid">${(related.length?related:MODULES.slice(0,8)).map(m=>`<article class="module"><span class="badge">Module #${m[0]}</span><h3>${m[1]}</h3><p>${m[3]}</p></article>`).join("")}</div></section>
+ <section class="section grid g2"><div class="card"><h2>Implementation pattern</h2><ol><li>Define the local capacity question.</li><li>Identify authoritative and local evidence.</li><li>Record source/date/geography/limits.</li><li>Design candidate interventions.</li><li>Apply privacy, safeguarding and accessibility constraints.</li><li>Pilot, measure, compare and iterate.</li></ol></div><div class="card"><h2>Evidence discipline</h2><p>Measured outcomes and modeled scenarios remain separate. Local records can be exported for collaboration without forcing an account or centralized profile.</p><a href="#research">Open evidence system →</a></div></section>`;
+}
+
+function renderRoute(id){
+ const route=ROUTES.find(r=>r.id===id)||ROUTES[0];state.route=route.id;updateActive();
+ const special={
+  overview:renderOverview,"teacher-capacity":renderTeacherCapacity,"teacher-certification":renderCertification,
+  "teacher-retention":renderRetention,"student-pathways":renderStudentPathways,cte:renderCTE,
+  apprenticeships:renderApprenticeships,"dual-credit":renderDualCredit,college:renderCollege,tutoring:renderTutoring,
+  workforce:renderWorkforce,rural:renderRural,"local-profiles":renderLocalProfiles,integration:renderIntegration,
+  "scenario-lab":renderScenario,"project-generator":renderProjectGenerator,"action-plans":renderActionPlans,
+  research:renderResearch,documents:renderDocuments,funding:renderFunding,oer:renderOER,portfolio:renderPortfolio,
+  "meta-prompts":renderMetaPrompts,"module-atlas":renderModuleAtlas,about:renderAbout
+ };
+ $("#view").innerHTML=(special[id]?special[id]():renderGeneric(route));
+ wireView(id);
+ $("#main").focus({preventScroll:true});
+ window.scrollTo({top:0,behavior:state.reduced?"auto":"smooth"});
+ addXP(1);
+}
+
+function wireView(id){
+ if(id==="teacher-capacity"){
+   $("#calcTeacherPipe")?.addEventListener("click",()=>{
+     const vals=$$("[data-pipe]").map(i=>({name:i.dataset.pipe,v:Number(i.value)}));
+     let lines=["PIPELINE ANALYSIS — user-entered values"];
+     vals.forEach((x,i)=>{if(i===0)return;const prev=vals[i-1].v;const loss=prev-x.v;lines.push(`${vals[i-1].name} → ${x.name}: ${prev} → ${x.v} (${loss>=0?loss+" lost":Math.abs(loss)+" added"})`)});
+     lines.push("\nUse the stage with the largest observed loss as a question for investigation—not automatic proof of cause.");
+     $("#teacherPipeOut").textContent=lines.join("\n");addXP(4);
+   });
+   $$(".shortage-pill").forEach(b=>b.addEventListener("click",()=>{
+     $("#shortageOut").innerHTML=`<strong>${esc(b.textContent)}</strong><br>Statewide declared shortage area for 2026–27. Next: verify district need, approved certification/preparation routes and local hiring conditions.<br><br>${sourceLink("tea-shortage","TEA shortage source")} · ${sourceLink("tea-cert-main","TEA certification resources")}`;addXP(2);
+   }));
+ }
+ if(id==="teacher-certification"){
+   $("#buildCert")?.addEventListener("click",buildCertPlan);$("#saveCert")?.addEventListener("click",async()=>{const text=$("#certOut").textContent;if(!text||text.includes("Choose inputs"))return toast("Build a plan first");await DB.put("records",{id:"cert-"+Date.now(),type:"teacher-cert-plan",created:new Date().toISOString(),text});toast("Certification plan saved locally");addXP(5)});
+ }
+ if(id==="teacher-retention"){
+   $("#calcWorkload")?.addEventListener("click",calcWorkload);
+   $("#saveWorkload")?.addEventListener("click",async()=>{const data=Object.fromEntries($$("[data-work]").map(i=>[i.dataset.work,Number(i.value)]));await DB.put("records",{id:"work-"+Date.now(),type:"workload",created:new Date().toISOString(),data});toast("Workload record saved locally");addXP(4)});
+   $("#retentionSummary")?.addEventListener("click",()=>{const a=$$("[data-retain]").map(i=>[i.dataset.retain,Number(i.value)]).sort((x,y)=>y[1]-x[1]);const avg=(a.reduce((s,x)=>s+x[1],0)/a.length).toFixed(1);$("#retentionOut").textContent=`Descriptive local pressure index: ${avg}/10\nHighest locally entered pressures: ${a.slice(0,3).map(x=>x[0]+" ("+x[1]+")").join(", ")}.\n\nThis is not a causal retention model. Use staff voice, administrative data and stronger evidence to investigate.`;addXP(3)});
+ }
+ if(id==="student-pathways"){
+   $$(".interest-pill").forEach(b=>b.addEventListener("click",()=>b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")!=="true")));
+   $("#matchPath")?.addEventListener("click",()=>{const sel=$$(".interest-pill").filter(b=>b.getAttribute("aria-pressed")==="true").map(b=>b.textContent);if(!sel.length)return toast("Select at least one interest");const opts=[...new Set(sel.flatMap(x=>PATHWAY_MATCH[x]||[]))];$("#pathOut").textContent=`Interests: ${sel.join(", ")}\n\nOptions to investigate:\n• ${opts.join("\n• ")}\n\nThese are exploratory connections, not deterministic career recommendations.`;addXP(4)});
+ }
+ if(id==="apprenticeships")$("#appPlanBtn")?.addEventListener("click",()=>{$("#appOut").textContent=`Verification checklist for ${$("#appOcc").value||"selected occupation"} in ${$("#appRegion").value||"Texas"}:\n1. Search registered / official directories.\n2. Confirm sponsor and current opening status.\n3. Verify entry requirements and location.\n4. Confirm paid work component and wage progression.\n5. Confirm related classroom instruction.\n6. Confirm credential/registration status.\n7. Check schedule, transportation and any minor-safeguarding requirements.`;addXP(3)});
+ if(id==="dual-credit")$("#dualPlan")?.addEventListener("click",()=>{$("#dualOut").textContent=`Course: ${$("#dualCourse").value||"Not entered"}\nPartner: ${$("#dualCollege").value||"Not entered"}\nCredits: ${$("#dualCredits").value}\nEstimated student cost entered: $${Number($("#dualCost").value||0).toFixed(2)}\n\nVerify: course eligibility, institutional agreement, student eligibility, transfer treatment, schedule, books/fees and FAST participation if relevant.`;addXP(3)});
+ if(id==="college")$("#calcCost")?.addEventListener("click",()=>{const sum=x=>$$(`[data-cost="${x}"]`).reduce((s,i)=>s+Number(i.value||0),0);const a=sum("A"),b=sum("B");$("#costOut").textContent=`Path A estimated total: $${a.toLocaleString()}\nPath B estimated total: $${b.toLocaleString()}\nDifference: $${Math.abs(a-b).toLocaleString()} (${a===b?"same":a<b?"A lower in entered costs":"B lower in entered costs"})\n\nPlanning estimate only. Financial aid, taxes, aid conditions, opportunity costs and future prices can change.`;addXP(3)});
+ if(id==="tutoring")$("#tutPlan")?.addEventListener("click",()=>{if(!$("#tutOwner").value.trim())return toast("Add an oversight owner for a safeguarded plan");$("#tutOut").textContent=`SAFEGUARDED TUTORING PLAN\nSubject: ${$("#tutSubject").value||"Not specified"}\nGrade band: ${$("#tutGrade").value}\nLanguage: ${$("#tutLang").value}\nMode: ${$("#tutMode").value}\nFrequency: ${$("#tutFreq").value||"To be set"}\nOversight: ${$("#tutOwner").value}\n\nRequired controls: accountable adult/organization, approved meeting channel, no public student PII, reporting workflow, documented expectations.`;addXP(4)});
+ if(id==="workforce")$("#wfPlan")?.addEventListener("click",()=>{$("#wfOut").textContent=`Occupation/industry: ${$("#wfOcc").value||"Not entered"}\nCurrent demand evidence: ${$("#wfDemand").value||"Not entered"}\nTraining supply: ${$("#wfTraining").value||"Not entered"}\nObserved gap: ${$("#wfGap").value||"Not entered"}\n\nNext verification: separate current openings, employment levels, wage estimates and long-term projections; date each source.`;addXP(3)});
+ if(id==="local-profiles"){loadProfiles();$("#saveProfile")?.addEventListener("click",saveProfile)}
+ if(id==="scenario-lab"){$("#runScenario")?.addEventListener("click",runScenario);$("#saveScenario")?.addEventListener("click",async()=>{const data={base:+$("#scBase").value,vac:+$("#scVac").value,turn:+$("#scTurn").value,tut:+$("#scTut").value,cte:+$("#scCte").value,broad:+$("#scBroad").value,shared:+$("#scShared").value};await DB.put("records",{id:"scenario-"+Date.now(),type:"scenario",created:new Date().toISOString(),data});toast("Scenario inputs saved locally")})}
+ if(id==="project-generator"){$("#scoreProject")?.addEventListener("click",scoreProject);$("#saveProject")?.addEventListener("click",saveProject)}
+ if(id==="action-plans")$("#buildActionPlan")?.addEventListener("click",buildActionPlan);
+ if(id==="oer")$("#oerSave")?.addEventListener("click",async()=>{const obj={id:"oer-"+Date.now(),type:"oer",title:$("#oerTitle").value,subject:$("#oerSubject").value,grade:$("#oerGrade").value,license:$("#oerLicense").value,a11y:$("#oerA11y").value,url:$("#oerUrl").value,created:new Date().toISOString()};await DB.put("records",obj);$("#oerOut").textContent=`Saved locally: ${obj.title||"Untitled resource"}\nLicense recorded: ${obj.license||"UNVERIFIED — do not assume open use rights"}`;toast("Resource record saved")});
+ if(id==="portfolio"){loadPortfolio();$("#pfSave")?.addEventListener("click",savePortfolio)}
+ if(id==="meta-prompts"){$("#genPrompt")?.addEventListener("click",generatePrompt);$("#copyPrompt")?.addEventListener("click",async()=>{await navigator.clipboard?.writeText($("#mpOut").textContent);toast("Copied prompt")})}
+ if(id==="module-atlas")$("#moduleFilter")?.addEventListener("input",e=>$("#moduleGrid").innerHTML=renderModules(e.target.value));
+ if(id==="about")$("#hashBtn")?.addEventListener("click",hashDocument);
+}
+
+function buildCertPlan(){
+ const start=$("#certStart").value, area=$("#certArea").value, pri=$("#certPriority").value, loc=$("#certLoc").value||"Texas";
+ let route;
+ if(start.includes("Bachelor")) route="Investigate an approved alternative certification or post-baccalaureate/university route.";
+ else if(start.includes("another")) route="Begin with TEA's out-of-state/country credentials review pathway; do not assume automatic reciprocity.";
+ else if(start.includes("Industry")) route="Check the specific CTE certificate rules because some trade/industrial and health-science fields have distinct degree/work-experience requirements.";
+ else if(start.includes("aide")) route="Explore approved preparation/degree-completion options plus employer or local grow-your-own support.";
+ else route="Plan a degree + approved educator preparation program aligned to the intended certificate.";
+ $("#certOut").textContent=`TEXAS CERTIFICATION PLANNING SEQUENCE
+Context: ${loc}
+Interest: ${area}
+Priority: ${pri}
+
+1. Clarify certificate field / grade band.
+2. ${route}
+3. Verify the program is TEA-approved.
+4. Confirm current degree/coursework prerequisites for that certificate.
+5. Complete required preparation and clinical experience.
+6. Obtain approval and pass required certification exams.
+7. Apply for state certification when eligible.
+8. Complete fingerprinting/background-check requirements.
+9. Verify assignment requirements with the hiring district.
+10. Plan induction, mentoring and retention supports.
+
+Official verification required before acting.`;
+ addXP(5);
+}
+
+function calcWorkload(){
+ const a=$$("[data-work]").map(i=>[i.dataset.work,Number(i.value||0)]),total=a.reduce((s,x)=>s+x[1],0);
+ $("#workloadOut").innerHTML=`<strong>Total entered weekly hours: ${total.toFixed(1)}</strong>`+a.map(x=>`<div class="metricbar"><span>${esc(x[0])}</span><span class="bar"><i style="width:${total?x[1]/total*100:0}%"></i></span><span>${x[1].toFixed(1)}h</span></div>`).join("")+`<p class="notice">Planning view only. Hours do not evaluate teacher performance or establish why workload is high.</p>`;addXP(3);
+}
+
+async function loadProfiles(){
+ const all=(await DB.all("records")).filter(x=>x.type==="profile").sort((a,b)=>b.created.localeCompare(a.created));
+ $("#profilesOut").innerHTML=all.length?all.map(x=>`<details><summary>${esc(x.name)} · ${esc(x.profileType)}</summary><div><p>${esc(x.programs||"")}</p><p><strong>Known vacancies:</strong> ${x.vacancies===""?"Unknown":esc(x.vacancies)}</p><small>Source: ${esc(x.source||"not recorded")} · date ${esc(x.sourceDate||"unknown")}</small></div></details>`).join(""):"<p class='muted'>No local profiles yet.</p>";
+}
+async function saveProfile(){
+ const obj={id:"profile-"+Date.now(),type:"profile",created:new Date().toISOString(),name:$("#profName").value||"Untitled profile",profileType:$("#profType").value,population:$("#profPop").value,vacancies:$("#profVac").value,programs:$("#profPrograms").value,infra:$("#profInfra").value,source:$("#profSource").value,sourceDate:$("#profDate").value};
+ if(obj.vacancies!=="" && !obj.source.trim()) return toast("Add a source for vacancy data or leave vacancies unknown");
+ await DB.put("records",obj);toast("Local profile saved");loadProfiles();addXP(5);
+}
+
+function runScenario(){
+ const base=+$("#scBase").value,vac=+$("#scVac").value,turn=+$("#scTurn").value,tut=+$("#scTut").value,cte=+$("#scCte").value,broad=+$("#scBroad").value,shared=+$("#scShared").value;
+ const teacherEffect=(-vac*.25)+(-turn*.35)+shared;
+ const supportEffect=(tut*.08)+(cte*.04)+(broad*.05);
+ const idx=Math.max(0,base*(1+(teacherEffect+supportEffect)/100));
+ $("#scenarioOut").textContent=`MODELED CAPACITY INDEX: ${idx.toFixed(1)} (baseline ${base})
+Illustrative relative contributions:
+• staffing/turnover/shared-specialist term: ${teacherEffect.toFixed(1)}%
+• tutoring/CTE/broadband support term: ${supportEffect.toFixed(1)}%
+
+Formula is intentionally simple and transparent:
+index = baseline × [1 + ((−0.25×vacancy change) + (−0.35×turnover change) + shared factor + (0.08×tutoring change) + (0.04×CTE change) + (0.05×broadband change))/100]
+
+This is Evidence E: a scenario, not a forecast or measured outcome.`;addXP(5);
+}
+
+function getProject(){
+ const scores=$$("[data-pjscore]").map(i=>[i.dataset.pjscore,+i.value]);
+ return {id:"project-"+Date.now(),type:"project",created:new Date().toISOString(),name:$("#pjName").value||"Untitled project",location:$("#pjLoc").value,problem:$("#pjProblem").value,population:$("#pjPop").value,intervention:$("#pjIntervention").value,partners:$("#pjPartners").value,cost:+$("#pjCost").value||0,months:+$("#pjMonths").value||0,scores,score:scores.reduce((s,x)=>s+x[1],0)/scores.length};
+}
+function scoreProject(){const p=getProject();$("#projectOut").textContent=`${p.name}
+Location: ${p.location||"Not entered"}
+Problem: ${p.problem||"Not entered"}
+Intervention: ${p.intervention||"Not entered"}
+Partners: ${p.partners||"Not entered"}
+Cost entered: $${p.cost.toLocaleString()}
+Timeline: ${p.months} months
+
+Transparent comparison score: ${p.score.toFixed(1)}/10
+${p.scores.map(x=>"• "+x[0]+": "+x[1]+"/10").join("\n")}
+
+Evidence status: F until supported by stronger local/empirical evidence.
+A higher score here is only the result of your entered criteria; it is not an official rating or funding recommendation.`;addXP(5)}
+async function saveProject(){const p=getProject();await DB.put("projects",p);toast("Project saved locally");addXP(4)}
+
+function buildActionPlan(){
+ const goal=$("#apGoal").value||"the stated capacity goal",loc=$("#apLoc").value||"the local area",assets=$("#apAssets").value||"assets to be inventoried",constraints=$("#apConstraints").value||"constraints to be documented";
+ $("#actionOut").textContent=`GOAL: ${goal}
+LOCATION: ${loc}
+
+30 DAYS — MAP
+• Verify baseline staffing/pathway evidence and data dates.
+• Inventory existing assets: ${assets}
+• Document constraints: ${constraints}
+• Name safeguarding, privacy, accessibility and legal/rule dependencies.
+
+60 DAYS — CONNECT
+• Identify school, family, library, employer, college/workforce and community partners.
+• Compare at least 2–3 candidate interventions.
+• Define measured vs modeled success metrics.
+
+90 DAYS — PILOT
+• Launch the smallest safe, evidence-aligned pilot that can answer a useful question.
+• Record participation, capacity added, cost, accessibility and implementation friction.
+
+1 YEAR — INSTITUTIONALIZE WHAT WORKS
+• Review measured outcomes and unintended effects.
+• Improve staffing, funding and governance.
+• Expand only where evidence and local support justify it.
+
+5 YEARS — RESILIENCE
+• Build multiple educator and learner pathways so capacity is not dependent on one institution, vendor or technology.
+• Maintain provenance, refresh data and retire interventions that no longer perform.`;addXP(4);
+}
+
+async function loadPortfolio(){const a=(await DB.all("portfolio")).sort((x,y)=>y.created.localeCompare(x.created));$("#pfOut").innerHTML=a.length?a.map(x=>`<details><summary>${esc(x.title)} · ${esc(x.itemType)}</summary><div><p>${esc(x.notes||"")}</p><small>${esc(x.date||"No date")} · evidence: ${esc(x.evidence||"none recorded")}</small></div></details>`).join(""):"<p class='muted'>No portfolio items yet.</p>"}
+async function savePortfolio(){const o={id:"pf-"+Date.now(),itemType:$("#pfType").value,title:$("#pfTitle").value||"Untitled",date:$("#pfDate").value,evidence:$("#pfEvidence").value,notes:$("#pfNotes").value,created:new Date().toISOString()};await DB.put("portfolio",o);toast("Portfolio item saved locally");loadPortfolio();addXP(5)}
+
+function generatePrompt(){
+ const v=id=>$(id).value.trim()||"[not specified]";
+ const text=`Design an evidence-linked education-capacity strategy for ${v("#mpGeo")} serving ${v("#mpLearner")}, with educator context ${v("#mpEdu")} and focus on ${v("#mpSubject")}. Budget context: ${v("#mpBudget")}. Timeline: ${v("#mpTime")}. Local shortage/constraint: ${v("#mpShort")}. Existing assets: ${v("#mpAssets")}.
+
+Requirements:
+1. Separate verified local facts, statewide evidence, inference, modeled scenarios and conceptual proposals.
+2. Compare at least four locally plausible interventions by cost, implementation time, people-capacity added, accessibility, rural reach where relevant, safeguarding requirements and evidence strength.
+3. Include educator recruitment/retention, learner pathways, tutoring/mentoring, CTE/apprenticeship/dual-credit links where applicable.
+4. Identify transportation, broadband, housing, health, food, energy or water dependencies only where evidence makes them relevant.
+5. Use official Texas sources first and date every mutable claim.
+6. Do not fabricate vacancies, active funding or program availability.
+7. Produce 30/60/90-day, 1-year and 5-year actions plus measurable outcomes.
+8. Preserve student privacy and prevent unsupervised minor/unknown-adult contact.
+9. State uncertainties, failure modes and what must be verified locally before action.`;
+ $("#mpOut").textContent=text;addXP(3);
+}
+
+async function hashDocument(){
+ try{
+  const enc=new TextEncoder().encode(document.documentElement.outerHTML);
+  const hash=await crypto.subtle.digest("SHA-256",enc);
+  const hex=[...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,"0")).join("");
+  $("#hashOut").textContent=`SHA-256 of the current loaded DOM serialization:\n${hex}\n\nThis verifies equality only if the exact same serialized bytes are hashed elsewhere. It does not prove authorship.`;
+ }catch(e){$("#hashOut").textContent="Hashing unavailable in this browser context: "+e.message}
+}
+
+function openDialog(id){const el=$("#"+id);el.classList.add("open");const f=el.querySelector("input,select,button");f?.focus()}
+function closeDialog(id){$("#"+id).classList.remove("open")}
+window.openSettings=()=>openDialog("settingsDialog");
+
+function globalSearch(q){
+ q=q.trim().toLowerCase();if(!q)return "";
+ const rr=ROUTES.filter(r=>(r.title+" "+r.desc+" "+r.group).toLowerCase().includes(q)).slice(0,12);
+ const mm=MODULES.filter(m=>m.slice(1).join(" ").toLowerCase().includes(q)).slice(0,15);
+ const ss=SOURCES.filter(s=>(s.title+" "+s.publisher+" "+s.use).toLowerCase().includes(q)).slice(0,8);
+ return `<h3>Sections</h3>${rr.map(r=>`<p><a href="#${r.id}" data-search-route="${r.id}"><strong>${r.title}</strong></a> — ${r.desc}</p>`).join("")||"<p class='muted'>No section matches.</p>"}
+ <h3>Modules</h3>${mm.map(m=>`<p><span class="badge">#${m[0]}</span> <strong>${m[1]}</strong> — ${m[3]}</p>`).join("")||"<p class='muted'>No module matches.</p>"}
+ <h3>Sources</h3>${ss.map(s=>`<p><a href="${s.url}" target="_blank" rel="noopener">${s.title}</a> <span class="badge">${s.type}</span></p>`).join("")||"<p class='muted'>No source matches.</p>"}`;
+}
+
+async function exportData(){
+ const payload={app:APP.name,version:APP.version,schema:APP.schema,exported:new Date().toISOString(),records:await DB.all("records"),portfolio:await DB.all("portfolio"),projects:await DB.all("projects"),preferences:{mode:state.mode,theme:document.documentElement.dataset.theme,contrast:document.documentElement.dataset.contrast||"",font:document.documentElement.style.getPropertyValue("--font")}};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`texas-learning-os-backup-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href);toast("JSON backup exported");
+}
+async function importData(file){
+ try{
+  const data=JSON.parse(await file.text());
+  if(data.app!==APP.name||data.schema!==APP.schema||!Array.isArray(data.records)||!Array.isArray(data.portfolio)||!Array.isArray(data.projects)) throw new Error("Backup schema/app mismatch");
+  for(const x of data.records) if(x&&typeof x.id==="string") await DB.put("records",x);
+  for(const x of data.portfolio) if(x&&typeof x.id==="string") await DB.put("portfolio",x);
+  for(const x of data.projects) if(x&&typeof x.id==="string") await DB.put("projects",x);
+  toast("Validated backup imported");renderRoute(state.route);
+ }catch(e){toast("Import rejected: "+e.message)}
+}
+
+function applyPrefs(){
+ const theme=localStorage.getItem("txlo:theme")||"dark",font=localStorage.getItem("txlo:font")||"16px",contrast=localStorage.getItem("txlo:contrast")||"";
+ document.documentElement.dataset.theme=theme;document.documentElement.style.setProperty("--font",font);if(contrast)document.documentElement.dataset.contrast=contrast;
+ $("#themeSelect").value=theme;$("#fontSelect").value=font;
+ $("#xpMeter").textContent=`XP ${state.xp}`;$("#connectivity").textContent=navigator.onLine?"● Online":"○ Offline";$("#connectivity").className="meter "+(navigator.onLine?"":"bad");
+ $(".hud").style.display=state.hud?"flex":"none";
+}
+
+function wireGlobal(){
+ window.addEventListener("hashchange",()=>{renderRoute(location.hash.slice(1)||"overview");$("#sidebar").classList.remove("open");$("#menuBtn").setAttribute("aria-expanded","false")});
+ window.addEventListener("online",applyPrefs);window.addEventListener("offline",applyPrefs);
+ $("#menuBtn").addEventListener("click",()=>{const o=$("#sidebar").classList.toggle("open");$("#menuBtn").setAttribute("aria-expanded",String(o))});
+ $("#sideFilter").addEventListener("input",e=>{const q=e.target.value.toLowerCase();$$(".tree a").forEach(a=>a.hidden=!a.textContent.toLowerCase().includes(q));$$(".tree-group").forEach(g=>g.hidden=false)});
+ $("#searchBtn").addEventListener("click",()=>openDialog("searchDialog"));$("#settingsBtn").addEventListener("click",()=>openDialog("settingsDialog"));
+ $$("[data-close]").forEach(b=>b.addEventListener("click",()=>closeDialog(b.dataset.close)));
+ $$(".dialog-backdrop").forEach(d=>d.addEventListener("click",e=>{if(e.target===d)closeDialog(d.id)}));
+ document.addEventListener("keydown",e=>{if(e.key==="Escape"){$$(".dialog-backdrop.open").forEach(d=>closeDialog(d.id));$("#sidebar").classList.remove("open")}});
+ $("#globalSearch").addEventListener("input",e=>{$("#searchResults").innerHTML=globalSearch(e.target.value);$$("[data-search-route]").forEach(a=>a.addEventListener("click",()=>closeDialog("searchDialog")))});
+ $("#themeSelect").addEventListener("change",e=>{document.documentElement.dataset.theme=e.target.value;localStorage.setItem("txlo:theme",e.target.value)});
+ $("#fontSelect").addEventListener("change",e=>{document.documentElement.style.setProperty("--font",e.target.value);localStorage.setItem("txlo:font",e.target.value)});
+ $("#modeSelect").addEventListener("change",e=>{state.mode=e.target.value;localStorage.setItem("txlo:mode",state.mode);renderRoute(state.route)});
+ $("#contrastBtn").addEventListener("click",()=>{const on=document.documentElement.dataset.contrast==="high";if(on){delete document.documentElement.dataset.contrast;localStorage.removeItem("txlo:contrast")}else{document.documentElement.dataset.contrast="high";localStorage.setItem("txlo:contrast","high")}});
+ $("#motionBtn").addEventListener("click",()=>{state.reduced=!state.reduced;localStorage.setItem("txlo:reduced",state.reduced?"1":"0");toast(state.reduced?"Reduced motion preferred":"Standard motion preferred")});
+ $("#hudBtn").addEventListener("click",()=>{state.hud=!state.hud;localStorage.setItem("txlo:hud",state.hud?"1":"0");applyPrefs()});
+ $("#exportBtn").addEventListener("click",exportData);$("#importInput").addEventListener("change",e=>e.target.files[0]&&importData(e.target.files[0]));
+ $("#clearBtn").addEventListener("click",async()=>{if(confirm("Delete all Texas Learning OS local records in this browser? This cannot be undone unless you exported a backup.")){await DB.clearAll();toast("Local records reset");renderRoute(state.route)}});
+ $("#langSelect").addEventListener("change",e=>{localStorage.setItem("txlo:lang",e.target.value);toast(e.target.value==="es"?"Interfaz principal en español; contenido largo aún está principalmente en inglés.":"English interface selected.")});
+}
+
+(async function init(){
+ setupNav();await DB.open().catch(e=>console.warn("IndexedDB unavailable",e));wireGlobal();applyPrefs();
+ const route=location.hash.slice(1)||"overview";renderRoute(ROUTES.some(r=>r.id===route)?route:"overview");
+})();
+</script>
+</body>
+</html>

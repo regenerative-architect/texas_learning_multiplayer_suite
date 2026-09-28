@@ -1,0 +1,48 @@
+{
+  "name": "Texas Learning & Teacher Capacity Operating System",
+  "short_name": "Texas Learning OS",
+  "description": "Texas education and teacher-capacity PWA with evidence/provenance, simplified advanced guides, local-first data, Trystero 0.25.3 WebRTC collaboration and optional dedicated-worker WebLLM.",
+  "id": "./",
+  "start_url": "./index.html#overview",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#0b3d68",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Advanced Guides",
+      "url": "./#guides",
+      "description": "Open simplified-to-expert technical guides"
+    },
+    {
+      "name": "Collaboration Room",
+      "url": "./index.html/#collaboration"
+    },
+    {
+      "name": "Texas Evidence",
+      "url": "./index.html/#texas"
+    },
+    {
+      "name": "Local AI",
+      "url": "./index.html/#ai"
+    }
+  ]
+}

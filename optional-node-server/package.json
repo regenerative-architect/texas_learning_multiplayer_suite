@@ -1,0 +1,1 @@
+{"name":"texas-learning-teacher-capacity-os-server","version":"2.0.0","private":true,"description":"Static/PWA + WebSocket collaboration server for the Texas Learning & Teacher Capacity OS","main":"server.js","scripts":{"start":"node server.js","check":"node --check server.js"},"engines":{"node":">=20"},"dependencies":{"ws":"^8.18.0"}}

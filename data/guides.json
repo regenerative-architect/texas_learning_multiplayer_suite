@@ -1,0 +1,525 @@
+[
+  {
+    "id": "connectivity-diagnosis",
+    "title": "Connectivity Diagnosis",
+    "domains": [
+      "Education",
+      "Connectivity",
+      "Library"
+    ],
+    "summary": "Distinguish device, Wi-Fi/LAN, ISP, service-availability and application-layer problems before prescribing a fix.",
+    "stages": [
+      {
+        "level": "1 minute",
+        "title": "What are we diagnosing?",
+        "body": "A connection problem can occur at several layers: device → local Wi-Fi/LAN → school/library network → ISP/backhaul → remote service. 'Internet is down' is not precise enough to choose an intervention.",
+        "actions": [
+          "Check whether one device or many are affected.",
+          "Compare Wi-Fi and wired/mobile connectivity if available.",
+          "Record time, location and affected service without recording student PII."
+        ]
+      },
+      {
+        "level": "Action",
+        "title": "Run a five-layer check",
+        "body": "Start local and move outward. This prevents expensive infrastructure proposals when the actual fault is a device, DNS, captive portal or local access point.",
+        "actions": [
+          "Device: airplane mode, adapter state, IP address.",
+          "LAN/Wi-Fi: signal, gateway reachability, another device.",
+          "Internet: known public site or speed/latency check.",
+          "Service: check whether only one platform fails.",
+          "Evidence: compare FCC/BDO availability with observed performance; availability is not adoption or experienced quality."
+        ]
+      },
+      {
+        "level": "Advanced",
+        "title": "Measure the right variables",
+        "body": "Latency, jitter, packet loss, upload capacity, contention, DNS resolution and firewall policy can matter as much as headline download speed for video instruction, telehealth and WebRTC.",
+        "actions": [
+          "Collect aggregate tests at multiple times.",
+          "Separate advertised availability from measured performance.",
+          "Document network policy constraints that could block WebRTC or WebGPU asset downloads."
+        ]
+      },
+      {
+        "level": "Expert",
+        "title": "Design an evidence-grade diagnostic",
+        "body": "Use repeatable measurement windows, device/network metadata, privacy-safe aggregation, topology diagrams and change logs. If proposing infrastructure, connect the diagnosed bottleneck to the intervention and define post-change acceptance tests.",
+        "actions": [
+          "Create baseline/after metrics.",
+          "Keep raw identifiers out of shared rooms.",
+          "Record source, date, geography, method and uncertainty."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "trystero-webrtc",
+    "title": "Trystero / WebRTC Multiplayer",
+    "domains": [
+      "Education",
+      "Connectivity",
+      "Technology"
+    ],
+    "summary": "Understand decentralized discovery, direct peer traffic, room IDs, optional passwords, snapshots and TURN fallback.",
+    "stages": [
+      {
+        "level": "1 minute",
+        "title": "How the room works",
+        "body": "Trystero uses a discovery strategy to help browsers exchange WebRTC connection information. After peers connect, application data travels directly peer-to-peer rather than through a central application database.",
+        "actions": [
+          "Use the same room ID and discovery strategy on participating devices.",
+          "Use a shared password when a room should not rely only on room/app identifiers for SDP encryption."
+        ]
+      },
+      {
+        "level": "Action",
+        "title": "Choose a strategy",
+        "body": "This build pins Trystero 0.25.3 and exposes Nostr, MQTT, BitTorrent and IPFS discovery. Nostr is the default; Trystero currently recommends the decentralized alternatives in roughly MQTT, BitTorrent, IPFS order after Nostr for robustness.",
+        "actions": [
+          "Start with Nostr.",
+          "If discovery is unreliable, try MQTT, then BitTorrent, then IPFS.",
+          "Keep strategy identical among peers joining the same session."
+        ]
+      },
+      {
+        "level": "Advanced",
+        "title": "State synchronization",
+        "body": "Room actions use the 0.25.x object API. A joining peer requests a snapshot from an existing peer; timestamped shared records merge locally, while deletion tombstones prevent old snapshots from resurrecting deleted board items.",
+        "actions": [
+          "Inspect peer count and snapshot status.",
+          "Export JSON backups for durable human-controlled history.",
+          "Treat peer IDs as ephemeral technical identifiers, not verified identities."
+        ]
+      },
+      {
+        "level": "Expert",
+        "title": "NAT traversal and TURN",
+        "body": "STUN/direct WebRTC works across many networks, but not all NAT/firewall combinations. TURN is a relay fallback for pairs that cannot establish a direct connection; it is not hidden infrastructure in this build.",
+        "actions": [
+          "Diagnose failures across different networks.",
+          "Add an organization-controlled TURN configuration only when needed.",
+          "For institutional deployment add SSO/admission controls separately from transport encryption."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "texas-broadband-status",
+    "title": "Texas Broadband Project Status",
+    "domains": [
+      "Education",
+      "Connectivity",
+      "Municipal",
+      "Library"
+    ],
+    "summary": "Read BEAD, BOOT, FCC and Texas mapping status without confusing awards, construction and actual service availability.",
+    "stages": [
+      {
+        "level": "1 minute",
+        "title": "Four different statuses",
+        "body": "A location can be mapped as unserved/underserved, included in an award, under construction, or actually served. Those are different states and should not be collapsed into one 'broadband available' flag.",
+        "actions": [
+          "Open the Texas BDO maps and BEAD award map.",
+          "Record the map/data date before using it in an education plan."
+        ]
+      },
+      {
+        "level": "Action",
+        "title": "Use current Texas program context",
+        "body": "Texas' BEAD final proposal was approved December 4, 2025. The BDO reports 22 selected applicants, more than 240,000 broadband-serviceable locations and more than 2,700 community anchor institutions, with construction expected to begin as soon as summer 2026. BOOT I reports $10.4 million awarded for 1,468 residential locations, 77 businesses and 15 community anchor institutions; BOOT I projects are due by December 31, 2026.",
+        "actions": [
+          "Check the BEAD award map for project/coverage status.",
+          "Check the BOOT I awardee status file for project completion.",
+          "Do not infer household adoption from infrastructure awards."
+        ]
+      },
+      {
+        "level": "Advanced",
+        "title": "Connect broadband status to education",
+        "body": "For a school or library, distinguish middle-mile/backhaul, last-mile availability, campus WAN, internal Wi-Fi, device access and affordability. E-rate can address eligible school/library connectivity components while BEAD/BOOT address different infrastructure scopes.",
+        "actions": [
+          "Map school/library anchor institutions to project areas.",
+          "Separate facility connectivity from student home connectivity.",
+          "Track E-rate funding-year deadlines independently of construction programs."
+        ]
+      },
+      {
+        "level": "Expert",
+        "title": "Build a project-status ledger",
+        "body": "Use a record per project/area with program, awardee, award date, agreement status, construction state, completion state, source URL, retrieval date and confidence. Never infer construction completion from an award announcement.",
+        "actions": [
+          "Refresh BDO/FCC sources on a schedule.",
+          "Retain superseded records for provenance.",
+          "Flag conflicting map/project evidence for human review."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "mapping-challenges",
+    "title": "Mapping & Challenge Workflows",
+    "domains": [
+      "Connectivity",
+      "Municipal",
+      "Research"
+    ],
+    "summary": "Understand FCC/Texas broadband maps, challenge mechanisms and the difference between mapped availability and lived connectivity.",
+    "stages": [
+      {
+        "level": "1 minute",
+        "title": "Maps are evidence, not reality itself",
+        "body": "Broadband maps are administrative/technical representations assembled from provider and location data. They are useful, but individual locations can be wrong or outdated.",
+        "actions": [
+          "Check the FCC National Broadband Map by address when appropriate.",
+          "Use aggregate rather than student-identifying location data in shared planning rooms."
+        ]
+      },
+      {
+        "level": "Action",
+        "title": "Classify the mismatch",
+        "body": "The Texas BDO points users to FCC availability, location and bulk challenge processes. A challenge should match the type of error instead of simply asserting the map is wrong.",
+        "actions": [
+          "Identify availability vs location/fabric issue.",
+          "Collect the evidence required by the official process.",
+          "Check whether a program-specific challenge window is still open; the 2025 BEAD application challenge window is historical."
+        ]
+      },
+      {
+        "level": "Advanced",
+        "title": "Triangulate datasets",
+        "body": "Combine BDO/FCC availability, ACS household subscription, school/library network evidence and measured performance. These datasets answer different questions and should not be merged without preserving definitions.",
+        "actions": [
+          "Attach data dictionary/definition to each layer.",
+          "Record geography and reference year.",
+          "Do not substitute subscription data for network availability."
+        ]
+      },
+      {
+        "level": "Expert",
+        "title": "Spatial evidence governance",
+        "body": "Use reproducible geospatial joins, stable location identifiers where legally permitted, versioned source snapshots and explicit uncertainty. Protect household/student privacy when converting address-level evidence into school-planning layers.",
+        "actions": [
+          "Aggregate sensitive records before collaboration.",
+          "Version geospatial layers.",
+          "Document transformation steps and exclusions."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "multidisciplinary-projects",
+    "title": "Multidisciplinary Project Design",
+    "domains": [
+      "Education",
+      "Workforce",
+      "Health",
+      "Housing",
+      "Mobility"
+    ],
+    "summary": "Design interventions around dependencies and accountable handoffs rather than a single-domain solution list.",
+    "stages": [
+      {
+        "level": "1 minute",
+        "title": "Start with a capacity problem",
+        "body": "Define the measurable education problem first: for example, specialist-teacher access, apprenticeship transport or family broadband—not 'fix education.'",
+        "actions": [
+          "Write one observable problem statement.",
+          "Name the affected population without exposing PII.",
+          "Choose one baseline measure."
+        ]
+      },
+      {
+        "level": "Action",
+        "title": "Map dependencies and owners",
+        "body": "Ask which domains can block or enable the outcome: staffing, housing, mobility, broadband, health, food, energy, water, employer/college capacity or library access.",
+        "actions": [
+          "Assign a disciplinary owner to each dependency.",
+          "Create shared evidence and decision records.",
+          "Define a 30/60/90-day pilot."
+        ]
+      },
+      {
+        "level": "Advanced",
+        "title": "Use interfaces, not silos",
+        "body": "Each discipline should provide inputs, constraints, decisions and measurable outputs. A cross-domain project fails when responsibilities are implicit and no handoff has an owner.",
+        "actions": [
+          "Add dependencies to the shared board.",
+          "Record decision rationale and evidence class.",
+          "Set stop/adjust criteria before scaling."
+        ]
+      },
+      {
+        "level": "Expert",
+        "title": "Govern the system of systems",
+        "body": "Use a dependency graph, RACI-like accountability, provenance ledger, conflict-resolution process and outcome hierarchy. Measure both primary educational outcomes and externalities such as commute burden or infrastructure utilization.",
+        "actions": [
+          "Define governance cadence.",
+          "Separate measured outcomes from modeled effects.",
+          "Publish a privacy-safe implementation log."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "telehealth",
+    "title": "Telehealth & Learning Access",
+    "domains": [
+      "Education",
+      "Health",
+      "Library",
+      "Connectivity"
+    ],
+    "summary": "Treat telehealth as a privacy-sensitive service dependency that can support families and staff without turning schools into health-data repositories.",
+    "stages": [
+      {
+        "level": "1 minute",
+        "title": "Where education intersects",
+        "body": "Health access can affect attendance and family/staff capacity, while libraries can provide private broadband-enabled spaces. The education system should coordinate access without collecting unnecessary clinical data.",
+        "actions": [
+          "Map privacy-safe referral/access resources.",
+          "Do not record diagnoses in shared education rooms."
+        ]
+      },
+      {
+        "level": "Action",
+        "title": "Design an access pathway",
+        "body": "Identify an appropriate provider/service, private location, reliable connectivity, scheduling/transport constraints and consent/confidentiality requirements. Texas HHS program guidance emphasizes consent, confidentiality, quality and supervision for telemedicine where applicable.",
+        "actions": [
+          "Use organization-approved telehealth procedures.",
+          "Verify current provider/payer/legal requirements.",
+          "Consider library privacy rooms where locally available and appropriate."
+        ]
+      },
+      {
+        "level": "Advanced",
+        "title": "Network quality matters",
+        "body": "Telehealth is sensitive to latency, jitter, packet loss, audio/video quality and privacy. A nominal broadband-availability flag is insufficient to demonstrate service readiness.",
+        "actions": [
+          "Test the actual room/network.",
+          "Ensure acoustic/visual privacy.",
+          "Define failure/escalation path when connectivity drops."
+        ]
+      },
+      {
+        "level": "Expert",
+        "title": "Govern cross-sector data boundaries",
+        "body": "Minimize information exchange between education and health organizations. Use referrals/status indicators rather than clinical details; define consent, retention, authorized access and incident handling before integrating systems.",
+        "actions": [
+          "Create a data-flow diagram.",
+          "Classify protected/sensitive fields.",
+          "Run privacy/security review before production integration."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "emergency-comms",
+    "title": "Emergency Communications for Learning Continuity",
+    "domains": [
+      "Education",
+      "Emergency Management",
+      "Connectivity",
+      "Energy"
+    ],
+    "summary": "Plan redundant, role-aware communications for closures, outages and continuity without relying on a single platform.",
+    "stages": [
+      {
+        "level": "1 minute",
+        "title": "Assume one channel can fail",
+        "body": "Power, cellular service, broadband, a vendor platform or a campus network can fail independently. Continuity plans need more than one way to communicate.",
+        "actions": [
+          "List primary and backup channels.",
+          "Define who is authorized to issue official messages.",
+          "Keep emergency instructions available offline where possible."
+        ]
+      },
+      {
+        "level": "Action",
+        "title": "Build the communications ladder",
+        "body": "Use district emergency procedures first, then map redundant channels such as SMS/voice, web/PWA, radio/partner networks and physical/community anchor points where appropriate.",
+        "actions": [
+          "Assign message owner and backup.",
+          "Prewrite accessible multilingual templates.",
+          "Test contact trees and offline materials."
+        ]
+      },
+      {
+        "level": "Advanced",
+        "title": "Separate coordination from public alerting",
+        "body": "A P2P room can support team coordination when peers can connect, but it is not a replacement for official mass-notification or public-safety systems. WebRTC itself may fail on restricted networks.",
+        "actions": [
+          "Use P2P only as an additional coordination layer.",
+          "Document when to switch to approved emergency channels.",
+          "Treat TURN as optional transport resilience, not an emergency authority system."
+        ]
+      },
+      {
+        "level": "Expert",
+        "title": "Exercise degraded modes",
+        "body": "Run tabletop and technical exercises that remove one dependency at a time: internet, power, cellular, DNS, identity provider or building access. Measure notification latency, reach and recovery.",
+        "actions": [
+          "Record gaps and corrective actions.",
+          "Maintain offline contact/procedure artifacts securely.",
+          "Review accessibility and language access in exercises."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "webllm",
+    "title": "WebLLM Local AI",
+    "domains": [
+      "Education",
+      "Technology",
+      "Privacy"
+    ],
+    "summary": "Use browser-local inference as an optional planning aid while preserving verification, privacy and device capability boundaries.",
+    "stages": [
+      {
+        "level": "1 minute",
+        "title": "What happens locally?",
+        "body": "After the WebLLM library/model are downloaded, inference can run in the browser with WebGPU rather than sending prompts to a remote model API. This build runs heavy inference in a dedicated Web Worker so the interface remains responsive.",
+        "actions": [
+          "Check WebGPU support.",
+          "Load a small model first.",
+          "Never place student-identifying records in prompts."
+        ]
+      },
+      {
+        "level": "Action",
+        "title": "Use it as a planning assistant",
+        "body": "Ask for project structures, evidence questions or cross-domain checklists. Treat generated content as unverified until supported by authoritative/local evidence.",
+        "actions": [
+          "Ask the model to label facts vs assumptions.",
+          "Cross-check mutable Texas facts in the Evidence module.",
+          "Use the deterministic fallback if no model is available."
+        ]
+      },
+      {
+        "level": "Advanced",
+        "title": "Caching and performance",
+        "body": "First-run model downloads can be large. Browser storage, GPU memory and device thermals determine what is practical. A PWA being offline-ready does not automatically mean an uncached model is available offline.",
+        "actions": [
+          "Track model download/caching status.",
+          "Choose smaller quantized models on constrained devices.",
+          "Do not promise offline AI until the exact model has loaded successfully before disconnecting."
+        ]
+      },
+      {
+        "level": "Expert",
+        "title": "Worker architecture and governance",
+        "body": "The main page creates a WebWorkerMLCEngine client while a dedicated module worker hosts WebWorkerMLCEngineHandler. Keep model output outside automated high-stakes student/teacher decisions and retain human verification checkpoints.",
+        "actions": [
+          "Pin/test WebLLM versions for production.",
+          "Define prompt/data policy.",
+          "Measure latency/memory before district-scale rollout."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pwa-offline",
+    "title": "PWA & Offline Architecture",
+    "domains": [
+      "Education",
+      "Technology",
+      "Resilience"
+    ],
+    "summary": "Know exactly what the service worker caches, what remains local and what still requires the network.",
+    "stages": [
+      {
+        "level": "1 minute",
+        "title": "Offline is not all-or-nothing",
+        "body": "The app shell, bundled evidence/guides and local IndexedDB records can work after successful caching. Live sources, first-time external libraries, Trystero discovery and uncached AI models still need connectivity.",
+        "actions": [
+          "Load the site once over HTTPS.",
+          "Confirm service-worker readiness.",
+          "Export a JSON backup before major changes."
+        ]
+      },
+      {
+        "level": "Action",
+        "title": "Classify features",
+        "body": "Label each feature as bundled/offline, cached-after-use or live-only. This avoids misleading users during outages.",
+        "actions": [
+          "Bundled: core UI, guides, evidence registry.",
+          "Local: projects, portfolio, room cache.",
+          "Network-dependent: peer discovery, official-source refresh, first WebLLM/model download."
+        ]
+      },
+      {
+        "level": "Advanced",
+        "title": "Safe update behavior",
+        "body": "Versioned service-worker caches remove old app-cache versions on activation while IndexedDB user records remain separate. A new deploy should not silently erase local work.",
+        "actions": [
+          "Bump cache version on asset changes.",
+          "Keep schema migrations explicit.",
+          "Test repository subpath deployment on GitHub Pages."
+        ]
+      },
+      {
+        "level": "Expert",
+        "title": "Operational PWA discipline",
+        "body": "Use deterministic precache lists, network/cache strategies by resource type, update messaging, quota-error handling and recovery paths. External CDN dependencies cannot be guaranteed offline by this same-origin service worker.",
+        "actions": [
+          "Run Lighthouse/manual offline tests.",
+          "Verify all precache paths.",
+          "Keep an offline fallback page and export route."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "provenance",
+    "title": "Evidence & Provenance",
+    "domains": [
+      "Research",
+      "Education",
+      "Governance"
+    ],
+    "summary": "Keep official measurements, research, institutional analysis, preliminary data, scenarios and proposals visibly distinct.",
+    "stages": [
+      {
+        "level": "1 minute",
+        "title": "Every claim needs context",
+        "body": "A number without its source, date, geography and definition can mislead even when the number itself is accurate.",
+        "actions": [
+          "Record source/publisher/date/geography.",
+          "Add evidence class A–F.",
+          "Write one limitation sentence."
+        ]
+      },
+      {
+        "level": "Action",
+        "title": "Separate evidence types",
+        "body": "Official administrative data, peer-reviewed findings, institutional analysis, preliminary releases, modeled scenarios and conceptual proposals answer different questions. Do not average them into one confidence score.",
+        "actions": [
+          "Mark preliminary data clearly.",
+          "Keep current openings separate from projections.",
+          "Keep statewide shortage status separate from district vacancies."
+        ]
+      },
+      {
+        "level": "Advanced",
+        "title": "Track transformations",
+        "body": "Derived metrics should document formulas, exclusions, source versions and retrieval dates so another user can reproduce or challenge the result.",
+        "actions": [
+          "Store raw-source references.",
+          "Expose scenario formulas.",
+          "Version superseded records rather than silently replacing history."
+        ]
+      },
+      {
+        "level": "Expert",
+        "title": "Provenance as collaboration infrastructure",
+        "body": "In multidisciplinary work, provenance is how teams resolve disagreement without appealing to authority alone. Link decisions to evidence records, note dissent/uncertainty and preserve the record of what was known at the time.",
+        "actions": [
+          "Attach evidence IDs to project decisions.",
+          "Require refresh dates for volatile sources.",
+          "Audit claims before public reporting."
+        ]
+      }
+    ]
+  }
+]

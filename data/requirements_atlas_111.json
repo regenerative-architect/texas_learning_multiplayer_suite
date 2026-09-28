@@ -1,0 +1,668 @@
+[
+  [
+    1,
+    "Primary objective",
+    "Systemwide",
+    "Recruit, retain and support educators while expanding student access, pathways and local planning."
+  ],
+  [
+    2,
+    "Capacity equation",
+    "Systemwide",
+    "Teachers + support staff + families + mentors + infrastructure + curriculum + time + community expertise + opportunity pathways."
+  ],
+  [
+    3,
+    "System architecture",
+    "Platform",
+    "Semantic HTML, responsive CSS, vanilla JS, progressive enhancement, local data and honest failure states."
+  ],
+  [
+    4,
+    "Universal interface",
+    "Platform",
+    "Sticky top navigation and collapsible side navigation derived from one route registry."
+  ],
+  [
+    5,
+    "User modes",
+    "Platform",
+    "Nineteen role-aware views that change priorities without hiding general information."
+  ],
+  [
+    6,
+    "Texas learning dashboard",
+    "Planning",
+    "Answer where gaps exist, what pathways exist and what feasible actions are available."
+  ],
+  [
+    7,
+    "Teacher capacity map",
+    "Educators",
+    "Planning layer for vacancies, shortage areas, turnover, certification and preparation programs; no fabricated vacancy counts."
+  ],
+  [
+    8,
+    "Shortage-area explorer",
+    "Educators",
+    "Show certification route, prerequisites, local need indicators and verified programs by shortage area."
+  ],
+  [
+    9,
+    "Teacher pathway navigator",
+    "Educators",
+    "Interest → credentials → route → preparation → exams → clinical experience → hiring → induction."
+  ],
+  [
+    10,
+    "Paraprofessional-to-teacher",
+    "Educators",
+    "Degree completion, tuition support, certification, work-study alignment and mentorship."
+  ],
+  [
+    11,
+    "Substitute capacity",
+    "Educators",
+    "Eligibility, onboarding, training, subject familiarity, scheduling and retention."
+  ],
+  [
+    12,
+    "Retired educator network",
+    "Educators",
+    "Voluntary tutoring, mentoring, curriculum support, substitute work, coaching and community learning."
+  ],
+  [
+    13,
+    "Teacher retention engine",
+    "Educators",
+    "Record workload, compensation, housing, commute, support, growth, admin burden, planning time and climate."
+  ],
+  [
+    14,
+    "Workload audit",
+    "Educators",
+    "Estimate instruction, planning, grading, meetings, paperwork, communication and extracurricular time."
+  ],
+  [
+    15,
+    "Teacher support inventory",
+    "Educators",
+    "Track coaches, aides, counselors, librarians, IT, special-education and behavioral supports."
+  ],
+  [
+    16,
+    "Mentor teacher network",
+    "Educators",
+    "Match mentor availability, subject/grade, schedule, support goal and check-ins without public personal data."
+  ],
+  [
+    17,
+    "Student pathway OS",
+    "Learners",
+    "Middle school → high school → CTE / dual credit / college / apprenticeship / employment."
+  ],
+  [
+    18,
+    "Interest-to-pathway matching",
+    "Learners",
+    "Connect interests to courses, credentials, CTE, apprenticeships and colleges without deterministic recommendations."
+  ],
+  [
+    19,
+    "Career & technical education",
+    "Opportunity",
+    "Sector-based skills, certifications, coursework, employers and education routes."
+  ],
+  [
+    20,
+    "Apprenticeship navigator",
+    "Opportunity",
+    "Entry requirements, duration, classroom component, paid work and credentials with active-listing verification."
+  ],
+  [
+    21,
+    "Dual-credit navigator",
+    "Opportunity",
+    "Eligibility, partner colleges, transferability, cost and scheduling with editable plans."
+  ],
+  [
+    22,
+    "College pathway planner",
+    "Opportunity",
+    "Compare community college, university, technical college, transfer and certificates."
+  ],
+  [
+    23,
+    "Cost-of-education calculator",
+    "Opportunity",
+    "Compare tuition, fees, books, transport, housing and lost work time; estimates are not guarantees."
+  ],
+  [
+    24,
+    "Student skills portfolio",
+    "Learners",
+    "Locally record projects, certifications, courses, volunteer work, technical skills and internships."
+  ],
+  [
+    25,
+    "Tutoring OS",
+    "Support",
+    "Subject, grade, schedule, modality, volunteer/paid and school-approved options with safeguarding."
+  ],
+  [
+    26,
+    "Tutor matching",
+    "Support",
+    "Match subject, grade, language, schedule, geography and mode only inside approved oversight structures."
+  ],
+  [
+    27,
+    "Mentoring",
+    "Support",
+    "Goals, frequency, guardian/school controls and documented expectations."
+  ],
+  [
+    28,
+    "Family learning OS",
+    "Support",
+    "Homework, reading, math, communication, attendance, learning plans and digital tools."
+  ],
+  [
+    29,
+    "Early literacy",
+    "Learning",
+    "Phonological awareness, decoding, fluency, vocabulary and comprehension with authoritative research."
+  ],
+  [
+    30,
+    "Numeracy",
+    "Learning",
+    "Arithmetic, fractions, ratios, algebra foundations and problem solving."
+  ],
+  [
+    31,
+    "STEM OS",
+    "Learning",
+    "Project-based physics, chemistry, biology, engineering, environmental science, robotics, space, energy and water."
+  ],
+  [
+    32,
+    "Computer science",
+    "Learning",
+    "Computational thinking, coding, web, data, cybersecurity and AI literacy through transferable concepts."
+  ],
+  [
+    33,
+    "AI literacy",
+    "Learning",
+    "Capabilities, limitations, hallucinations, bias, privacy, verification, citation and responsible prompting."
+  ],
+  [
+    34,
+    "Digital literacy",
+    "Learning",
+    "Search, source evaluation, privacy, passwords, scams, online safety, documents, sheets and collaboration."
+  ],
+  [
+    35,
+    "Open educational resources",
+    "Resources",
+    "Search by subject, grade, format, license, accessibility and language while respecting licenses."
+  ],
+  [
+    36,
+    "Curriculum resource bank",
+    "Resources",
+    "Save lessons, activities, assessments, projects and references with source/license metadata."
+  ],
+  [
+    37,
+    "Special education",
+    "Learning",
+    "Accommodations, IEP literacy, assistive technology, family resources and transition planning; no legal conclusions."
+  ],
+  [
+    38,
+    "Accessibility",
+    "Platform",
+    "Screen readers, captions, dyslexia-friendly options, keyboard access and accessible documents."
+  ],
+  [
+    39,
+    "Bilingual / ESL",
+    "Learning",
+    "English learners, bilingual education, family access, educator pathways and dual-language resources."
+  ],
+  [
+    40,
+    "School-community expert network",
+    "Support",
+    "Verified experts contribute talks, workshops, mentorship, demonstrations and projects under safeguarding workflows."
+  ],
+  [
+    41,
+    "Library integration",
+    "Support",
+    "Tutoring, internet, digital literacy, makerspaces, homework and career resources."
+  ],
+  [
+    42,
+    "School partnership directory",
+    "Support",
+    "Record employers, colleges, libraries, nonprofits and apprenticeship sponsors."
+  ],
+  [
+    43,
+    "Workforce alignment",
+    "Opportunity",
+    "Map industries → occupations → skills → certifications → programs using current labor data."
+  ],
+  [
+    44,
+    "Skills gap explorer",
+    "Opportunity",
+    "Compare current job demand and long-term projections against available training."
+  ],
+  [
+    45,
+    "School-to-work pipeline",
+    "Opportunity",
+    "Learning → skill → credential → work-based learning → employment, with leak-point analysis."
+  ],
+  [
+    46,
+    "Employer partnership OS",
+    "Opportunity",
+    "Employers can define skills needs, internships, apprenticeships, equipment donations and mentors."
+  ],
+  [
+    47,
+    "Internship navigator",
+    "Opportunity",
+    "Search, eligibility, applications, scheduling and transportation with student privacy."
+  ],
+  [
+    48,
+    "Rural education",
+    "Place",
+    "Long travel, broadband, shortages, advanced courses, CTE and transportation."
+  ],
+  [
+    49,
+    "Shared teacher model",
+    "Place",
+    "Regional sharing for specialized educators with scheduling and certification constraints."
+  ],
+  [
+    50,
+    "Mobile learning labs",
+    "Place",
+    "Traveling STEM, welding, robotics, healthcare simulation and agriculture labs."
+  ],
+  [
+    51,
+    "School transportation",
+    "Integration",
+    "Assess commute, extracurricular, CTE and apprenticeship access; designed to connect with Texas Mobility OS."
+  ],
+  [
+    52,
+    "Housing + teacher retention",
+    "Integration",
+    "Explore housing cost, commute and teacher pay together without treating housing as a sole cause."
+  ],
+  [
+    53,
+    "Health + learning",
+    "Integration",
+    "Attendance, nurses, mental-health resources and healthcare access; designed to connect with Texas Health OS."
+  ],
+  [
+    54,
+    "Food + learning",
+    "Integration",
+    "School meals, food insecurity, gardens and nutrition education; designed to connect with Texas Food OS."
+  ],
+  [
+    55,
+    "Energy + schools",
+    "Integration",
+    "Energy cost, cooling, backup power and resilience; designed to connect with Texas Energy OS."
+  ],
+  [
+    56,
+    "Water + schools",
+    "Integration",
+    "Drinking water, conservation, gardens and drought resilience; designed to connect with Texas Water OS."
+  ],
+  [
+    57,
+    "Student opportunity map",
+    "Place",
+    "Map CTE, dual credit, apprenticeships, colleges, libraries and internships without student PII."
+  ],
+  [
+    58,
+    "District capacity profile",
+    "Place",
+    "Enrollment, staffing, vacancies, experience, shortages, CTE, dual credit, counselors, libraries and ratios."
+  ],
+  [
+    59,
+    "County learning profile",
+    "Place",
+    "Population, districts, schools, postsecondary, training, workforce demand, broadband and transportation."
+  ],
+  [
+    60,
+    "Regional Texas profiles",
+    "Place",
+    "Gulf Coast, RGV, Central, North, East, West, Panhandle, Permian Basin and rural Texas."
+  ],
+  [
+    61,
+    "Project generator",
+    "Planning",
+    "Problem, population, subject, intervention, partners, staffing, cost, timeline, location, evidence and metrics."
+  ],
+  [
+    62,
+    "Project prioritization",
+    "Planning",
+    "Compare served population, educators added, cost, time, evidence, accessibility, rural reach and sustainability with visible logic."
+  ],
+  [
+    63,
+    "Scenario lab",
+    "Planning",
+    "Simplified staffing, turnover, tutoring, CTE, broadband and regional-sharing scenarios."
+  ],
+  [
+    64,
+    "Teacher pipeline model",
+    "Planning",
+    "Interest → preparation → certification → hiring → induction → retention, tracking losses at each stage."
+  ],
+  [
+    65,
+    "Student pathway model",
+    "Planning",
+    "Enrollment → completion → credential → work-based learning → postsecondary/employment."
+  ],
+  [
+    66,
+    "Capacity scorecard",
+    "Planning",
+    "Locally defined indicators for availability, coverage, tutoring, CTE, dual credit, apprenticeships, broadband, transport and partnerships."
+  ],
+  [
+    67,
+    "Action plans",
+    "Planning",
+    "Generate 30/60/90-day, one-year and five-year roadmaps."
+  ],
+  [
+    68,
+    "Funding navigator",
+    "Resources",
+    "Verified teacher preparation, workforce, CTE, apprenticeship, rural, technology and special-education sources."
+  ],
+  [
+    69,
+    "Government document library",
+    "Evidence",
+    "TEA guidance, certification rules, shortage documents, workforce reports, district/state plans and applicable legislation."
+  ],
+  [
+    70,
+    "Civic participation",
+    "Evidence",
+    "Neutral procedural information for boards, planning, advisory groups, CTE/workforce boards and public comment."
+  ],
+  [
+    71,
+    "Research requirement",
+    "Evidence",
+    "Prioritize TEA, THECB, TWC, ED, BLS, NCES, colleges/universities and peer-reviewed work."
+  ],
+  [
+    72,
+    "Evidence classification",
+    "Evidence",
+    "A official measured; B peer reviewed; C institutional; D preliminary; E modeled; F conceptual."
+  ],
+  [
+    73,
+    "Data provenance",
+    "Evidence",
+    "Source, publisher, date, geography, frequency, retrieval date, limitations and license."
+  ],
+  [
+    74,
+    "Data freshness",
+    "Evidence",
+    "Live, recent, cached, historical or unknown."
+  ],
+  [
+    75,
+    "Search",
+    "Platform",
+    "Search pathways, programs, resources, projects, documents, research and glossary."
+  ],
+  [
+    76,
+    "Accessibility target",
+    "Platform",
+    "WCAG 2.2 AA target: keyboard, screen readers, contrast, captions, reduced motion, touch targets and scalable text."
+  ],
+  [
+    77,
+    "Privacy",
+    "Safety",
+    "Personal student data local by default; do not expose grades, disability, identity, address or records without explicit action."
+  ],
+  [
+    78,
+    "Child safety",
+    "Safety",
+    "No unsupervised contact between minors and unknown adults; guardian/school oversight, verified organizations and reporting workflows."
+  ],
+  [
+    79,
+    "Data sovereignty",
+    "Safety",
+    "Export, import, inspect, delete, reset and back up; no hidden telemetry."
+  ],
+  [
+    80,
+    "Security",
+    "Safety",
+    "Validated imports, safe rendering, defensive parsing, no credentials, HTTPS/CSP guidance and optional integrity hashes."
+  ],
+  [
+    81,
+    "Offline mode",
+    "Platform",
+    "Local plans, pathways, lesson references, schedules, projects and cached metadata; stale information is marked."
+  ],
+  [
+    82,
+    "Print mode",
+    "Platform",
+    "Printable pathway, certification, tutoring, apprenticeship, district and project briefs."
+  ],
+  [
+    83,
+    "Visual design",
+    "Platform",
+    "Pathway networks, skill trees, constellations, classroom diagrams, workforce maps and credential ladders."
+  ],
+  [
+    84,
+    "Learning HUD",
+    "Platform",
+    "Skills built, pathways explored, tutoring hours, projects, credentials and mentor connections; never gates learning."
+  ],
+  [
+    85,
+    "Meta-prompt engine",
+    "Planning",
+    "Compose context-rich prompts from geography, role, subject, pathway, budget, timeline and shortage."
+  ],
+  [
+    86,
+    "Project discovery engine",
+    "Planning",
+    "Generate candidate interventions from local conditions; require local evaluation."
+  ],
+  [
+    87,
+    "Success metrics",
+    "Planning",
+    "Track measured teachers/tutors/mentors/pathways/credentials/apprenticeships/CTE/partnerships separately from modeled outcomes."
+  ],
+  [
+    88,
+    "Texas learning roadmap",
+    "Planning",
+    "NOW / NEXT / EMERGING / FRONTIER by stakeholder from learner to state."
+  ],
+  [
+    89,
+    "Zero-harm / anti-inversion",
+    "Safety",
+    "Improve access, opportunity, educator capacity, autonomy and mobility; prohibit exploitation, manipulation, concealed uncertainty and unreviewed high-stakes automation."
+  ],
+  [
+    90,
+    "Attributions & licenses",
+    "Safety",
+    "Credit Ricky Foster + Navi / Planetary Restoration Archive plus datasets, curricula, OER, APIs, research and open-source patterns."
+  ],
+  [
+    91,
+    "Final quality requirement",
+    "Systemwide",
+    "A genuine operating system: users can learn, explore, compare, plan, teach, mentor, connect, measure, record, export, coordinate and act."
+  ],
+  [
+    92,
+    "Animated readiness splash",
+    "Experience",
+    "Connectivity, evidence and collaboration readiness progression with immediate workspace entry and reduced-motion behavior."
+  ],
+  [
+    93,
+    "Simplified Advanced Guides",
+    "Learning",
+    "Four-depth guides: one-minute explanation, action steps, advanced context and implementation detail."
+  ],
+  [
+    94,
+    "Accessible technical tooltips",
+    "Accessibility",
+    "Mouse, keyboard/focus and click-accessible explanations for room IDs, discovery, passwords, disciplinary roles and peer networking."
+  ],
+  [
+    95,
+    "Decentralized discovery selector",
+    "Collaboration",
+    "Selectable Nostr, MQTT, BitTorrent and IPFS strategies through one Trystero room/action interface."
+  ],
+  [
+    96,
+    "Optional room secret",
+    "Collaboration",
+    "Optional shared password strengthens Trystero session-description encryption; it is not identity verification or access-control infrastructure."
+  ],
+  [
+    97,
+    "Peer snapshot synchronization",
+    "Collaboration",
+    "Joining peers request current shared tasks, projects, decisions and feed state from existing peers without a central application database."
+  ],
+  [
+    98,
+    "Ephemeral presence identity limits",
+    "Safety",
+    "Peer identifiers indicate a technical connection, not verified human, professional or organizational identity."
+  ],
+  [
+    99,
+    "Same-device multiplayer fallback",
+    "Collaboration",
+    "BroadcastChannel plus IndexedDB supports same-origin tabs even without Trystero or internet access."
+  ],
+  [
+    100,
+    "Conflict-aware shared records",
+    "Collaboration",
+    "Timestamped last-writer merge plus deletion tombstones reduces stale-state resurrection across reconnecting peers."
+  ],
+  [
+    101,
+    "TURN fallback diagnostics",
+    "Connectivity",
+    "Direct WebRTC is preferred; TURN is explicitly configured only when NAT/firewall conditions prevent direct connections."
+  ],
+  [
+    102,
+    "Texas broadband project status",
+    "Connectivity",
+    "Connect BEAD/BOOT award and construction status to education planning without treating awards as completed service."
+  ],
+  [
+    103,
+    "Broadband maps and challenges",
+    "Connectivity",
+    "FCC/Texas availability mapping, challenge workflows, spatial provenance and privacy-safe aggregation."
+  ],
+  [
+    104,
+    "E-rate and school connectivity",
+    "Connectivity",
+    "Current school/library connectivity funding context with funding-year verification and eligibility boundaries."
+  ],
+  [
+    105,
+    "Library connectivity nodes",
+    "Integration",
+    "Libraries as broadband, digital-literacy, workforce, learning and privacy-space infrastructure."
+  ],
+  [
+    106,
+    "Telehealth access interface",
+    "Integration",
+    "Privacy-sensitive education/health/library connectivity coordination without collecting unnecessary clinical data."
+  ],
+  [
+    107,
+    "Emergency communications",
+    "Resilience",
+    "Redundant communications planning that supplements rather than replaces official emergency-notification systems."
+  ],
+  [
+    108,
+    "Census digital-access layer",
+    "Evidence",
+    "ACS household subscription indicators remain distinct from provider availability and measured network performance."
+  ],
+  [
+    109,
+    "Dedicated-worker WebLLM",
+    "AI",
+    "Browser-local WebGPU inference offloaded to a dedicated worker with deterministic fallback when unavailable."
+  ],
+  [
+    110,
+    "GitHub Pages PWA deployment",
+    "Platform",
+    "Repository-relative static deployment with .nojekyll, manifest, service worker and offline assets."
+  ],
+  [
+    111,
+    "Backendless-first collaboration boundary",
+    "Governance",
+    "Normal operation requires no central app server; durable institutional identity/history remains an explicit optional future layer rather than a hidden dependency."
+  ]
+]

@@ -1,0 +1,24 @@
+{
+  "generated": "2026-09-28",
+  "title": "Texas education and educator-capacity snapshot",
+  "records": [
+    {"id":"students-2025","label":"Texas public-school students","value":">5.5 million","period":"2025 annual report context","evidence":"A","freshness":"Recent","source":"tea-annual-2025","limitations":"TEA annual-report summary wording; use TAPR or PEIMS extracts for exact local/district counts."},
+    {"id":"teachers-2024-25","label":"Employed teachers","value":"370,509","period":"2024–25","evidence":"A","freshness":"Historical","source":"tea-prep-route-2024-25","limitations":"TEA table covers teachers employed in the Texas public-school system on a half-time-or-more basis."},
+    {"id":"teachers-other-cert","label":"Teachers on certificate other than standard","value":"54,719 (14.77%)","period":"2024–25","evidence":"A","freshness":"Historical","source":"tea-prep-route-2024-25","limitations":"Includes one-year, visiting international, intern, probationary, emergency certificates and no certificate/permit; do not treat all subgroups as equivalent."},
+    {"id":"shortage-count","label":"Declared teacher shortage areas","value":"5","period":"2026–27","evidence":"A","freshness":"Recent","source":"tea-shortage-2026","limitations":"A statewide designation does not establish a vacancy in a specific district."},
+    {"id":"vacancy-collection","label":"First statewide Teacher Vacancy Collection due","value":"September 2027","period":"vacancies Sept. 1, 2026–Aug. 31, 2027","evidence":"A","freshness":"Recent","source":"tea-vacancy-collection","limitations":"Current local vacancy figures should still come from districts or other dated sources until statewide collection results are available."},
+    {"id":"higher-ed-2025","label":"Texas higher-education fall enrollment","value":"1,680,517","period":"Fall 2025 preliminary","evidence":"A","freshness":"Recent","source":"thecb-enrollment-2025","limitations":"THECB described these as preliminary enrollment numbers when released."},
+    {"id":"fast","label":"FAST dual-credit support","value":"Eligible coursework can be no-cost to qualifying students","period":"FY 2027 guidance available","evidence":"A","freshness":"Recent","source":"thecb-fast","limitations":"Eligibility requires an eligible course, institutional agreement with a participating institution and the statutory educational-disadvantage criterion."},
+    {"id":"career-clusters","label":"Texas Programs of Study career clusters","value":"14","period":"2026 structure","evidence":"A","freshness":"Recent","source":"thecb-programs-study","limitations":"Local school and college program offerings vary."}
+  ],
+  "shortageAreas2026_27": ["Bilingual / English as a Second Language","Career and Technical Education — secondary only","Computer Science / Technology Applications","English Language Arts and Reading — secondary only","Special Education"],
+  "criticalShortageAreas2026_27": ["Bilingual / English as a Second Language","Career and Technical Education — secondary only","Computer Science / Technology Applications","Special Education"],
+  "teacherRetentionAllotment": {
+    "source":"tea-hb2-retention","smallDistrictThreshold":"5,000 or fewer enrolled students",
+    "smallDistrict":{"3to4Years":4000,"5PlusYears":8000},"largerDistrict":{"3to4Years":2500,"5PlusYears":5000},
+    "period":"2025–26 implementation guidance","note":"Confirm current TEA implementation and district payroll treatment before decisions."
+  },
+  "prepProgram": {"source":"tea-prep","partnershipTypes":["PREP Mentorship","PREP Grow Your Own","PREP Preservice Residence","PREP Preservice Traditional","PREP Preservice Alternative Certification"],"note":"Participation is optional for eligible districts/open-enrollment charters; verify current funding cycles and eligibility."},
+  "higherEd2025Preliminary":{"public2Year":776432,"public4Year":708669,"healthRelated":34547,"independent":160869,"total":1680517},
+  "careerClusters2026":["Agriculture, Food, and Natural Resources","Architecture & Engineering","Arts, Audio Visual Technology and Communications","Business, Marketing, and Finance","Construction","Education and Training","Energy","Health Science","Hospitality and Tourism","Human Services","Information Technology","Law and Public Service","Manufacturing","Transportation, Distribution, and Logistics"]
+}
